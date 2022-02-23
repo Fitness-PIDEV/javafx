@@ -5,6 +5,7 @@
  */
 package Service;
 
+import Alert.AlertDialog;
 import IService.IService;
 import Utils.MyConnexion;
 import entites.Produit;
@@ -12,7 +13,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -39,6 +42,7 @@ public class produit_service implements IService<Produit>{
           ps.setInt(4, u.getID_categorie());*/
             ps.execute();    
             System.out.println(u);
+           AlertDialog.showNotification("ajout","avec succee", AlertDialog.image_cross);
         } catch (Exception e) { 
             System.out.println(e);
         }  
@@ -51,12 +55,12 @@ public class produit_service implements IService<Produit>{
     public void Supprimer(int t) throws SQLException {
      PreparedStatement ps;
 
-        String query = "DELETE FROM `produit` WHERE `id`=?  ";
+        String query = "UPDATE `produit` SET `etat`=?";
   
         try {
             ps = c.prepareStatement(query);
 
-            ps.setInt(1, t);
+            ps.setInt(1,0);
 
             ps.execute();
 
@@ -93,7 +97,7 @@ public class produit_service implements IService<Produit>{
     @Override
     public ObservableList<Produit> Affichertout() throws SQLException {
     ObservableList<Produit> list = FXCollections.observableArrayList();
-        String requete = "SELECT * FROM `produit`";
+        String requete = "SELECT * FROM `produit` WHERE etat=1";
         try {
             PreparedStatement ps = c.prepareStatement(requete);
             ResultSet rs = ps.executeQuery();
@@ -109,24 +113,34 @@ public class produit_service implements IService<Produit>{
     
     }
     
-     public ObservableList<Produit> serach(String cas) throws SQLException {
+     public ObservableList<Produit> recherche_par_prix(float p) throws SQLException {
         ObservableList<Produit> list = FXCollections.observableArrayList();
-        String requete = "SELECT * FROM `produit` where ( nom_produit LIKE '%" + cas + "%' )";
-        try {
-            PreparedStatement ps = c.prepareStatement(requete);
-            ResultSet rs = ps.executeQuery();
+        list=Affichertout();
+        List<Produit> list2 = list.stream().filter(c->c.getPrix_produit()>p).collect(Collectors.toList());
 
-            while (rs.next()) {
-      list.add(new Produit(rs.getInt("ID"),rs.getString("nom_produit"),rs.getInt("prix_produit"),rs.getString("image_produit"),rs.getInt("quantite_produit"),rs.getInt("ID_categorie")));
-
-        }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-
-        return list;
+        return FXCollections.observableArrayList(list2);
     }
 
-    
+    public List<Produit> select_produit_by_cat(int categorie_id)
+     { PreparedStatement ps;
+        List<Produit> produits=new ArrayList<>();
+        String sql = "SELECT * FROM `produit` where `ID_categorie`=?" ;
+       
+        try {
+            ps = c.prepareStatement(sql);
+
+            ps.setInt(1,categorie_id);
+           ResultSet rs = ps.executeQuery();
+          while (rs.next()){
+          produits.add(new Produit(rs.getInt("ID"),rs.getString("nom_produit"),rs.getInt("prix_produit"),rs.getString("image_produit"),rs.getInt("quantite_produit"),rs.getInt("ID_categorie")));
+          
+          }
+            System.out.println("affichage produit par categorie");
+        } catch (Exception e) {
+            System.out.println(e);
+        } 
+        return produits;
+     
+     }
     
 }
