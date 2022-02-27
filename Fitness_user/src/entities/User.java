@@ -9,37 +9,37 @@ package entities;
  *
  * @author Ahmed
  */
-public class users {
+public class User {
 
     private int id,num;
-    private String nom,prenom,email,mdp,role,photo;
+    private String nom,prenom,email,mdp,photo;
+    private boolean isDeleted;
+    
 
-    public users() {
+    public User() {
     }
 
-    public users(int num, String nom, String prenom, String email, String mdp, String role, String photo) {
+    public User(int num, String nom, String prenom, String email, String mdp, String photo, boolean isDeleted) {
         this.num = num;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.mdp = mdp;
-        this.role = role;
         this.photo = photo;
+        this.isDeleted = isDeleted;
     }
-    
 
-    public users(int id, int num, String nom, String prenom, String email, String mdp, String role, String photo) {
+    public User(int id, int num, String nom, String prenom, String email, String mdp, String photo, boolean isDeleted) {
         this.id = id;
         this.num = num;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.mdp = mdp;
-        this.role = role;
         this.photo = photo;
+        this.isDeleted = isDeleted;
     }
 
-    
     public int getId() {
         return id;
     }
@@ -88,14 +88,6 @@ public class users {
         this.mdp = mdp;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     public String getPhoto() {
         return photo;
     }
@@ -104,10 +96,20 @@ public class users {
         this.photo = photo;
     }
 
+    public boolean isIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
     @Override
     public String toString() {
-        return "users{" + "id=" + id + ", num=" + num + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", mdp=" + mdp + ", role=" + role + ", photo=" + photo + '}';
+        return "\nUser{" + "id=" + id + ", num=" + num + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", mdp=" + mdp + ", photo=" + photo ;
     }
+
+    
     
     
     
