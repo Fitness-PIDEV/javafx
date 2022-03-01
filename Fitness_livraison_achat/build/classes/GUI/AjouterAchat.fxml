@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="GUI.AjouterAchatController">
+   <children>
+      <TextField fx:id="tf_ref_prod" layoutX="100.0" layoutY="135.0" prefHeight="23.0" prefWidth="138.0" promptText="ref_produit" AnchorPane.bottomAnchor="239.4" AnchorPane.leftAnchor="99.99999999999997" AnchorPane.rightAnchor="361.6" AnchorPane.topAnchor="135.0" />
+      <Label layoutX="201.0" layoutY="31.0" text="Ajouter Achat">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tf_prix" layoutX="100.0" layoutY="187.0" prefHeight="23.0" prefWidth="138.0" promptText="prix" />
+      <Button layoutX="143.0" layoutY="261.0" mnemonicParsing="false" onAction="#Ajout_Achat" text="Acheter" />
+   </children>
+</AnchorPane>

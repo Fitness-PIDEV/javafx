@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AfficherAchatController">
+   <children>
+      <ListView fx:id="listviewachat" layoutX="66.0" layoutY="93.0" onMouseClicked="#fill" prefHeight="229.0" prefWidth="287.0" />
+      <Button layoutX="107.0" layoutY="339.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
+      <Button layoutX="475.0" layoutY="287.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
+      <TextField fx:id="tf_ref_prod" layoutX="431.0" layoutY="159.0" promptText="ref_produit" />
+      <TextField fx:id="tf_prix" layoutX="432.0" layoutY="219.0" promptText="prix" />
+      <TextField fx:id="recherche" layoutX="68.0" layoutY="56.0" prefHeight="26.0" prefWidth="287.0" promptText="recherche par prix" />
+   </children>
+</AnchorPane>
