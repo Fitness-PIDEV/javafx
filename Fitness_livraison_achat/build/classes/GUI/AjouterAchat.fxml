@@ -6,16 +6,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="GUI.AjouterAchatController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AjouterAchatController">
    <children>
-      <TextField fx:id="tf_ref_prod" layoutX="100.0" layoutY="135.0" prefHeight="23.0" prefWidth="138.0" promptText="ref_produit" AnchorPane.bottomAnchor="239.4" AnchorPane.leftAnchor="99.99999999999997" AnchorPane.rightAnchor="361.6" AnchorPane.topAnchor="135.0" />
-      <Label layoutX="201.0" layoutY="31.0" text="Ajouter Achat">
+      <TextField fx:id="tf_ref_prod" layoutX="185.0" layoutY="136.0" prefHeight="26.0" prefWidth="222.0" promptText="ref_produit" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.bottomAnchor="238.0" AnchorPane.leftAnchor="185.0" AnchorPane.rightAnchor="193.0" AnchorPane.topAnchor="136.0" />
+      <Label layoutX="201.0" layoutY="31.0" text="Ajouter Achat" textFill="#5172a7">
          <font>
             <Font name="System Bold" size="29.0" />
          </font>
       </Label>
-      <TextField fx:id="tf_prix" layoutX="100.0" layoutY="187.0" prefHeight="23.0" prefWidth="138.0" promptText="prix" />
-      <Button layoutX="143.0" layoutY="261.0" mnemonicParsing="false" onAction="#Ajout_Achat" text="Acheter" />
+      <TextField fx:id="tf_prix" layoutX="185.0" layoutY="187.0" prefHeight="26.0" prefWidth="222.0" promptText="prix" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+      <Button layoutX="256.0" layoutY="261.0" mnemonicParsing="false" onAction="#Ajout_Achat" prefHeight="60.0" prefWidth="80.0" style="-fx-background-color: #5172a7;" text="Acheter" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Button>
    </children>
 </AnchorPane>

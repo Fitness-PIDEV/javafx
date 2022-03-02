@@ -8,16 +8,19 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AjouterLivraisonController">
    <children>
-      <Label layoutX="208.0" layoutY="43.0" text="Ajouter Livraison">
+      <Label layoutX="190.0" layoutY="33.0" prefHeight="50.0" prefWidth="219.0" text="Ajouter Livraison" textFill="#5172a7">
          <font>
-            <Font name="System Bold" size="23.0" />
+            <Font name="System Bold" size="27.0" />
          </font>
       </Label>
-      <TextField fx:id="tf_ref_com" layoutX="225.0" layoutY="117.0" promptText="ref commande" />
-      <TextField fx:id="tf_donnee" layoutX="225.0" layoutY="228.0" promptText="donnees" />
-      <TextField fx:id="tf_id" layoutX="225.0" layoutY="189.0" promptText="ID" />
-      <TextField fx:id="tf_frais" layoutX="225.0" layoutY="152.0" promptText="frais livraison" />
-      <TextField fx:id="tf_localisation" layoutX="225.0" layoutY="263.0" promptText="localisation" />
-      <Button layoutX="272.0" layoutY="321.0" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
+      <TextField fx:id="tf_ref_com" layoutX="225.0" layoutY="117.0" promptText="ref commande" style="-fx-background-color: tranparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+      <TextField fx:id="tf_donnee" layoutX="225.0" layoutY="228.0" promptText="donnees" style="-fx-background-color: tranparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+      <TextField fx:id="tf_id" layoutX="225.0" layoutY="189.0" promptText="ID" style="-fx-background-color: tranparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+      <TextField fx:id="tf_frais" layoutX="225.0" layoutY="152.0" promptText="frais livraison" style="-fx-background-color: tranparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+      <TextField fx:id="tf_localisation" layoutX="225.0" layoutY="263.0" promptText="localisation" style="-fx-background-color: tranparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+      <Button layoutX="264.0" layoutY="322.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="34.0" prefWidth="70.0" style="-fx-background-color: #5172a7;" text="Ajouter" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
    </children>
 </AnchorPane>

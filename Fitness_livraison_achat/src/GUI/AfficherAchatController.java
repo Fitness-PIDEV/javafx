@@ -14,6 +14,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -59,12 +60,27 @@ public class AfficherAchatController implements Initializable {
 
     @FXML
     private void modifier(ActionEvent event) {
+          String errors = "";
+        if (tf_ref_prod.getText().trim().isEmpty()) {
+
+            errors += "Saisire reference produit\n";
+        }
+        if (tf_prix.getText().trim().isEmpty()) {
+            errors += "Saisire prix\n";
+        }
+        
+        if (errors.length() > 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur de saisie");
+            alert.setContentText(errors);
+            alert.showAndWait();
+        } else {
         achat a = new achat();
         a.setRef_produit(Integer.parseInt(tf_ref_prod.getText()));
         a.setPrix((Float) Float.parseFloat(tf_prix.getText()));
         sa.modifer(a, listviewachat.getSelectionModel().getSelectedItem().getId_produit());
         refreshlist();
-    }
+    }}
 
     @FXML
     private void fill(MouseEvent event) {

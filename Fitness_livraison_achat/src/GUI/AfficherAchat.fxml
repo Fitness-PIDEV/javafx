@@ -4,14 +4,21 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AfficherAchatController">
    <children>
       <ListView fx:id="listviewachat" layoutX="66.0" layoutY="93.0" onMouseClicked="#fill" prefHeight="229.0" prefWidth="287.0" />
-      <Button layoutX="107.0" layoutY="339.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
-      <Button layoutX="475.0" layoutY="287.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
-      <TextField fx:id="tf_ref_prod" layoutX="431.0" layoutY="159.0" promptText="ref_produit" />
-      <TextField fx:id="tf_prix" layoutX="432.0" layoutY="219.0" promptText="prix" />
-      <TextField fx:id="recherche" layoutX="68.0" layoutY="56.0" prefHeight="26.0" prefWidth="287.0" promptText="recherche par prix" />
+      <Button layoutX="167.0" layoutY="339.0" mnemonicParsing="false" onAction="#supprimer" style="-fx-background-color: #5172a7;" text="Supprimer" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
+      <Button layoutX="468.0" layoutY="285.0" mnemonicParsing="false" onAction="#modifier" style="-fx-background-color: #5172a7;" text="Modifier" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
+      <TextField fx:id="tf_ref_prod" layoutX="431.0" layoutY="159.0" promptText="ref_produit" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+      <TextField fx:id="tf_prix" layoutX="432.0" layoutY="219.0" promptText="prix" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+      <TextField fx:id="recherche" layoutX="68.0" layoutY="56.0" prefHeight="26.0" prefWidth="287.0" promptText="recherche par prix" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
    </children>
 </AnchorPane>

@@ -4,18 +4,24 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="GUI.AfficherLivraisonController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AfficherLivraisonController">
    <children>
-      <ListView fx:id="listviewlivraison" layoutX="69.0" layoutY="74.0" prefHeight="218.0" prefWidth="290.0" />
-      <TextField fx:id="tf_recherche" layoutX="69.0" layoutY="35.0" onAction="#recherche" prefHeight="26.0" prefWidth="290.0" promptText="Recherche" />
-      <Button layoutX="178.0" layoutY="317.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
-      <TextField fx:id="tf_ref_com" layoutX="402.0" layoutY="74.0" promptText="Reference Commande" />
-      <TextField fx:id="tf_frais" layoutX="402.0" layoutY="106.0" promptText="Frais Livraison" />
-      <TextField fx:id="tf_id" layoutX="402.0" layoutY="139.0" promptText="ID" />
-      <TextField fx:id="tf_donnee" layoutX="402.0" layoutY="170.0" promptText="Donnees" />
-      <TextField fx:id="tf_localisation" layoutX="402.0" layoutY="202.0" promptText="Localisation" />
-      <Button layoutX="446.0" layoutY="256.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
+      <ListView fx:id="listviewlivraison" layoutX="69.0" layoutY="74.0" onMouseClicked="#fill" prefHeight="218.0" prefWidth="290.0" />
+      <TextField fx:id="tf_recherche" layoutX="69.0" layoutY="35.0" onAction="#recherche" prefHeight="26.0" prefWidth="290.0" promptText="Recherche" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+      <Button layoutX="170.0" layoutY="323.0" mnemonicParsing="false" onAction="#supprimer" style="-fx-background-color: #5172a7;" text="Supprimer" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
+      <TextField fx:id="tf_ref_com" layoutX="402.0" layoutY="74.0" promptText="Reference Commande" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+      <TextField fx:id="tf_frais" layoutX="402.0" layoutY="106.0" promptText="Frais Livraison" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+      <TextField fx:id="tf_id" layoutX="402.0" layoutY="139.0" promptText="ID" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+      <TextField fx:id="tf_donnee" layoutX="402.0" layoutY="170.0" promptText="Donnees" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+      <TextField fx:id="tf_localisation" layoutX="402.0" layoutY="202.0" promptText="Localisation" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+      <Button layoutX="438.0" layoutY="262.0" mnemonicParsing="false" onAction="#modifier" style="-fx-background-color: #5172a7;" text="Modifier" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
    </children>
 </AnchorPane>

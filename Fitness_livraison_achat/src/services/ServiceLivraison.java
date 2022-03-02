@@ -80,7 +80,7 @@ public class ServiceLivraison implements Iservice<livraison> {
     @Override
     public void modifer(livraison u, int id) {
         PreparedStatement ps;
-        String query = "UPDATE `livraison` SET `id_user`=?,`ref_commande`=?,`donnees_user`=?,`frais_livraison`=?,`localisation`=? WHERE `id_livraison`=?";
+        String query = "UPDATE `livraison` SET `id_user`=?,`ref_commande`=?,`donnees_user`=?,`frais_livraison`=?,`localisation`=? WHERE `id_livraison`="+id;
         try {
 
             ps = cnx.prepareStatement(query);
