@@ -12,7 +12,9 @@ import entities.Reclamation;
 import entities.User;
 import services.ServiceReclamation;
 import services.ServiceUsers;
+import utils.Mailapi;
 import utils.MyDB;
+
 
 /**
  *
@@ -38,7 +40,10 @@ public class Fitness_user {
         //Reclamation r=new Reclamation("aaaaa","ccccccc");
        // sr.ajouter(r);
        //sr.modifer(r,1 );
-       sr.supprimer(2);
+       //sr.supprimer(2);
+        System.out.println(sp.findRoleByEmail("erferf"));
+        //Mailapi.send("testapimail63@gmail.com", "TESTapimail2022", "ahmed.tlili@esprit.tn", "Mail api", "testm mail api");
+        //Smsapi.sendSMS("+21626420116", "test sms api");
     //sp.supprimer(6);
     //sp.supprimer(4);
     //sp.ajouter(new users(15425,"sffe","gregerg","zegzg","ggregrg","adminnnn","eeeee"));

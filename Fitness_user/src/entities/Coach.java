@@ -5,10 +5,6 @@
  */
 package entities;
 
-/**
- *
- * @author Mortadha
- */
 public class Coach extends User{
     private String certificatURL;
 

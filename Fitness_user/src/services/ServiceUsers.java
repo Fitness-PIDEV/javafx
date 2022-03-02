@@ -397,7 +397,7 @@ public ServiceUsers(){
     }
     public boolean checklogin(String email,String password){
         try {
-            String query="select * from user where email='"+email+"' AND mdp='"+password+"'";
+            String query="select * from user where email='"+email+"' AND mdp='"+password+"'AND isDeleted=0";
             Statement stm =cnx.createStatement();
             ResultSet rs= stm.executeQuery(query);
             return rs.next();
@@ -405,6 +405,34 @@ public ServiceUsers(){
             Logger.getLogger(ServiceUsers.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
+    }
+    public String findRoleByEmail(String email){
+        try {
+            String role="";
+            Statement stm =cnx.createStatement();
+            String querry ="SELECT * FROM `user` where email='"+email+"'";
+            ResultSet rs= stm.executeQuery(querry);
+            if(rs.next()){
+                return rs.getString(9);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceUsers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "";
+    }
+    public int findIdByEmail(String email){
+        try {
+            String role="";
+            Statement stm =cnx.createStatement();
+            String querry ="SELECT * FROM `user` where email='"+email+"'";
+            ResultSet rs= stm.executeQuery(querry);
+            if(rs.next()){
+                return rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceUsers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
     }
     
     

@@ -5,10 +5,6 @@
  */
 package entities;
 
-/**
- *
- * @author Mortadha
- */
 public class Admin extends User{
 
     public Admin() {

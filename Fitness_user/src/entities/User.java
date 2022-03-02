@@ -106,7 +106,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "\nUser{" + "id=" + id + ", num=" + num + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", mdp=" + mdp + ", photo=" + photo ;
+        return "\nUser{" + "id=" + id + ", num=" + num + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", mdp=" + mdp + ", photo=" + photo  ;
     }
 
     

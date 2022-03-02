@@ -7,11 +7,18 @@ package GUI;
 
 import entities.User;
 import fitness_user.FXMain;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,8 +30,19 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
+import javafx.scene.input.KeyEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import javax.imageio.ImageIO;
 import services.ServiceUsers;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
+
 
 /**
  * FXML Controller class
@@ -56,6 +74,23 @@ public class FXMLSignUPController implements Initializable {
     private Label erreur_password;
     @FXML
     private Label erreur_nom;
+    @FXML
+    private ImageView emailCM;
+    @FXML
+    private ImageView nomCM;
+    @FXML
+    private ImageView numCM;
+    @FXML
+    private ImageView prenomCM;
+     private boolean verificationUserPhone;
+     private boolean verificationUserpasword;
+     private boolean verificationUserEmail;
+     private boolean verificationUsernom;
+    private boolean verificationUserPrenom;
+    @FXML
+    private ImageView passwordCM;
+    @FXML
+    private ImageView img;
     /**
      * Initializes the controller class.
      */
@@ -77,53 +112,36 @@ public class FXMLSignUPController implements Initializable {
             
             Scene scene = new Scene(root);
             
-            stage.setTitle("signup");
+            stage.setTitle("Fitness");
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    User u=new User();
     @FXML
     private void signin(ActionEvent event) {
-        String errors="";
-        if(tfnom.getText().trim().isEmpty()){
-            erreur_nom.setText("veuillez saisir votre nom");
+        if (  verificationUserEmail &&  verificationUserPhone
+                && verificationUserpasword  && verificationUsernom
+                && verificationUserPrenom ) 
+        {
             
-        }else erreur_nom.setText("");
-        if(tfprenom.getText().trim().isEmpty()){
-            erreur_prenom.setText("veuillez saisir votre prenom");
-           
-        }else  erreur_prenom.setText("");
-        if(tfemail.getText().trim().isEmpty()){
-            erreur_mail.setText("veuillez saisir votre mail");
-          
-        }else erreur_mail.setText("");
-        if(tfnumero.getText().trim().isEmpty()){
-            erreur_num.setText("veuillez saisir votre numero");
-           
-        }else erreur_num.setText("");
-        if(pfpassword.getText().trim().isEmpty()){
-            erreur_password.setText("veuillez saisir votre password");
-           
-        }else erreur_password.setText("");
-        if(errors.length()>0){
-            //Alert alert =new Alert(Alert.AlertType.ERROR);
-            //alert.setTitle("Erreur de saisie");
-            //alert.setContentText(errors);
-            //alert.showAndWait(); 
-        }
-        else{
-            //erreur_nom.setText("");
-            User u=new User();
             u.setNom(tfnom.getText());
             u.setPrenom(tfprenom.getText());
             u.setEmail(tfemail.getText());
             u.setMdp(pfpassword.getText());
             u.setNum(Integer.parseInt(tfnumero.getText()));
-            u.setPhoto("ee");
+            //u.setPhoto("ee");
             su.ajouter(u);
+            
+            TrayNotification tray=new TrayNotification();
+            tray.setAnimationType(AnimationType.POPUP);
+            tray.setTitle("User ajouté");
+            tray.setMessage("Bienvenue !");
+            tray.setNotificationType(NotificationType.SUCCESS);
+            tray.showAndDismiss(Duration.millis(2000));
+            
             try {
             
                 Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -140,12 +158,146 @@ public class FXMLSignUPController implements Initializable {
             } catch (IOException ex) {
                 Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
             }
+           
+        }
+        
+    }
+    byte[] person_image = null;
+    @FXML
+    private void uploadimage(ActionEvent event) {
+     
+    }
+
+    @FXML
+    private boolean testmail() {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."
+                + "[a-zA-Z0-9_+&*-]+)*@"
+                + "(?:[a-zA-Z0-9-]+\\.)+[a-z"
+                + "A-Z]{2,7}$";
+
+        Pattern pat = Pattern.compile(emailRegex);
+        if (tfemail.getText() == null) {
+            return false;
+        }
+
+        if (pat.matcher(tfemail.getText()).matches() == false) {
+            verificationUserEmail = false;
+            emailCM.setImage(new Image("Images/erreurcheckMark.png"));
+            erreur_mail.setText("Veuillez verifier la forme ***@**.**");
+            return false;
+//            
+
+        } else {
+            emailCM.setImage(new Image("Images/checkMark.png"));
+             erreur_mail.setText("Mail valide");
+             verificationUserEmail = true;
+        }
+        return true;
+    }
+
+    @FXML
+    private void testnom(KeyEvent event) {
+            int nbNonChar = 0;
+            for (int i = 1; i < tfnom.getText().trim().length(); i++) {
+                char ch = tfnom.getText().charAt(i);
+                if (!Character.isLetter(ch)) {
+                    nbNonChar++;
+                }
+            }
+
+            if (nbNonChar == 0 && tfnom.getText().trim().length() >=3) {
+            nomCM.setImage(new Image("Images/checkMark.png"));
+            erreur_nom.setText("Nom valide");
+            
+            verificationUsernom = true;
+            } else {
+              nomCM.setImage(new Image("Images/erreurcheckMark.png"));
+              erreur_nom.setText("Il faut au moins 3 caracteres");
+              verificationUsernom = false;
+
+            }
+    }
+
+    @FXML
+    private void testprenom(KeyEvent event) {
+        int nbNonChar = 0;
+            for (int i = 1; i < tfprenom.getText().trim().length(); i++) {
+                char ch = tfprenom.getText().charAt(i);
+                if (!Character.isLetter(ch)) {
+                    nbNonChar++;
+                }
+            }
+
+            if (nbNonChar == 0 && tfprenom.getText().trim().length() >=3) {
+            prenomCM.setImage(new Image("Images/checkMark.png"));
+            erreur_prenom.setText("Prenom valide");
+            
+            verificationUserPrenom = true;
+            } else {
+                prenomCM.setImage(new Image("Images/erreurcheckMark.png"));
+                erreur_prenom.setText("Il faut au moins 3 caracteres");
+                verificationUserPrenom = false;
+
+            }
+    }
+    public boolean isNumeric(String str){
+        if(str==null){
+            return false;
+        }
+        try
+        {
+            int x=Integer.parseInt(str);
+        }
+        catch (NumberFormatException e){
+            return false;
+        }
+        return true;
+    }
+    @FXML
+    private void testtel(KeyEvent event) {
+        if (tfnumero.getText().trim().length() == 8) {
+            int nbChar = 0;
+            for (int i = 1; i < tfnumero.getText().trim().length(); i++) {
+                char ch = tfnumero.getText().charAt(i);
+
+                if (Character.isLetter(ch)) {
+
+                    nbChar++;
+
+                }
+                //System.out.println(nbChar);
+            }
+
+            if (isNumeric(tfnumero.getText())) {
+                erreur_num.setText("Tel valide");
+                 numCM.setImage(new Image("Images/checkMark.png"));
+                verificationUserPhone = true;
+            } else {             numCM.setImage(new Image("Images/erreurcheckMark.png"));
+                erreur_num.setText("Tel non valide");
+                verificationUserPhone = false;
+
+            }
+
+        } else {numCM.setImage(new Image("Images/erreurcheckMark.png"));
+            erreur_num.setText("Il faut 8 chiffres");
+            verificationUserPhone = false;
         }
         
     }
 
     @FXML
-    private void uploadimage(ActionEvent event) {
+    private void testpassword(KeyEvent event) {
+        String PAS = pfpassword.getText().trim();
+
+        if (PAS.length() >= 6) {
+            passwordCM.setImage(new Image("Images/checkMark.png"));
+            erreur_password.setText("Longeur juste");
+            verificationUserpasword = true;
+        }else{
+        passwordCM.setImage(new Image("Images/erreurcheckMark.png"));
+        verificationUserpasword = false;
+            erreur_password.setText("Utilisez au moins six caractères");
+            
+        }
     }
-    
 }

@@ -34,7 +34,7 @@ import tray.notification.TrayNotification;
  * @author Ahmed
  */
 public class FXMLLoginController implements Initializable {
-
+    public static int idglobaluser;
     @FXML
     private TextField tfemail;
     @FXML
@@ -51,7 +51,49 @@ public class FXMLLoginController implements Initializable {
     @FXML
     private void login(ActionEvent event) {
         if(su.checklogin(tfemail.getText(), pfpassword.getText())){
-            System.out.println("connecte");
+            if(su.findRoleByEmail(tfemail.getText()).equals("ADMIN")){
+                try {
+            
+                    Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+
+                    stageclose.close();
+                    Parent root=FXMLLoader.load(getClass().getResource("/GUI/FXMLGSTUser.fxml"));
+                    Stage stage =new Stage();
+
+                    Scene scene = new Scene(root);
+
+                    stage.setTitle("signup");
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            else if(su.findRoleByEmail(tfemail.getText()).equals("USER")){
+                idglobaluser=su.findIdByEmail(tfemail.getText());
+                try {
+            
+                    Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+
+                    stageclose.close();
+                    Parent root=FXMLLoader.load(getClass().getResource("/GUI/FXMLAjoutRec.fxml"));
+                    Stage stage =new Stage();
+
+                    Scene scene = new Scene(root);
+
+                    stage.setTitle("Menu");
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            else if(su.findRoleByEmail(tfemail.getText()).equals("COACH")){
+                System.out.println("interface coach");
+            }
+            else{
+                System.out.println("interface livreur");
+            }
             TrayNotification tray=new TrayNotification();
             tray.setAnimationType(AnimationType.POPUP);
             tray.setTitle("connexiox");

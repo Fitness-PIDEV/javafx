@@ -4,49 +4,51 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="843.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLSignUPController">
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="843.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLSignUPController">
    <children>
-      <TextField fx:id="tfnom" layoutX="157.0" layoutY="148.0" promptText="Nom">
+      <TextField fx:id="tfnom" layoutX="157.0" layoutY="148.0" onKeyReleased="#testnom" promptText="Nom" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;">
          <font>
             <Font size="17.0" />
          </font>
       </TextField>
-      <TextField fx:id="tfprenom" layoutX="448.0" layoutY="148.0" promptText="Prenom">
+      <TextField fx:id="tfprenom" layoutX="448.0" layoutY="148.0" onKeyReleased="#testprenom" promptText="Prenom" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;">
          <font>
             <Font size="17.0" />
          </font>
       </TextField>
-      <TextField fx:id="tfemail" layoutX="157.0" layoutY="211.0" promptText="Email">
+      <TextField fx:id="tfemail" layoutX="157.0" layoutY="211.0" onKeyReleased="#testmail" promptText="Email" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;">
          <font>
             <Font size="17.0" />
          </font>
       </TextField>
-      <TextField fx:id="tfnumero" layoutX="157.0" layoutY="283.0" promptText="Numero">
+      <TextField fx:id="tfnumero" layoutX="157.0" layoutY="283.0" onKeyReleased="#testtel" promptText="Numero" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;">
          <font>
             <Font size="17.0" />
          </font>
       </TextField>
-      <Text layoutX="326.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign UP">
+      <Text fill="#5172a7" layoutX="331.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign UP">
          <font>
-            <Font name="System Bold" size="36.0" />
+            <Font name="Bauhaus 93" size="47.0" />
          </font>
       </Text>
-      <Button layoutX="760.0" layoutY="14.0" mnemonicParsing="false" onAction="#gotologin" text="Login">
+      <Button layoutX="760.0" layoutY="14.0" mnemonicParsing="false" onAction="#gotologin" style="-fx-background-color: #5172a7;" text="Login" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="366.0" layoutY="449.0" mnemonicParsing="false" onAction="#signin" text="SignIN">
+      <Button layoutX="366.0" layoutY="449.0" mnemonicParsing="false" onAction="#signin" style="-fx-background-color: #5172a7;" text="SignIN" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button layoutX="498.0" layoutY="290.0" mnemonicParsing="false" onAction="#uploadimage" text="Upload image" />
-      <PasswordField fx:id="pfpassword" layoutX="449.0" layoutY="211.0" promptText="Password">
+      <Button layoutX="498.0" layoutY="290.0" mnemonicParsing="false" onAction="#uploadimage" style="-fx-background-color: #5172a7;" text="Upload image" textFill="WHITE" />
+      <PasswordField fx:id="pfpassword" layoutX="449.0" layoutY="211.0" onKeyReleased="#testpassword" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;">
          <font>
             <Font size="17.0" />
          </font>
@@ -56,5 +58,16 @@
       <Label fx:id="erreur_prenom" layoutX="449.0" layoutY="186.0" textFill="#ff2121" AnchorPane.leftAnchor="449.0" />
       <Label fx:id="erreur_password" layoutX="449.0" layoutY="249.0" textFill="#ff2121" AnchorPane.leftAnchor="449.0" />
       <Label fx:id="erreur_nom" layoutX="159.0" layoutY="186.0" textFill="#ff2121" AnchorPane.leftAnchor="159.0" />
+      <ImageView fx:id="emailCM" fitHeight="20.0" fitWidth="20.0" layoutX="338.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="nomCM" fitHeight="20.0" fitWidth="20.0" layoutX="338.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="numCM" fitHeight="20.0" fitWidth="20.0" layoutX="338.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="prenomCM" fitHeight="20.0" fitWidth="20.0" layoutX="628.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="passwordCM" fitHeight="20.0" fitWidth="20.0" layoutX="628.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="145.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/logo1.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="img" fitHeight="150.0" fitWidth="200.0" layoutX="504.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

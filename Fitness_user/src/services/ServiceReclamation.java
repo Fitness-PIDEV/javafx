@@ -29,7 +29,7 @@ public ServiceReclamation(){
     @Override
     public void ajouter(Reclamation u) {
         PreparedStatement ps;
-        String query = "INSERT INTO `reclamation`(`titre`, `message`) VALUES ('"+u.getTitre()+"','"+u.getMessage()+"')";
+        String query = "INSERT INTO `reclamation`(`titre`, `message`,`iduser`) VALUES ('"+u.getTitre()+"','"+u.getMessage()+"','"+u.getIduser()+"')";
         try {
             ps = cnx.prepareStatement(query);
             ps.execute();    
@@ -56,7 +56,7 @@ public ServiceReclamation(){
             r.setId(rs.getInt(1));
             r.setTitre(rs.getString(2));
             r.setMessage(rs.getString(3));
-            
+            r.setIduser(rs.getInt(4));
             
             Reclamation.add(r);
         }
@@ -79,7 +79,7 @@ public ServiceReclamation(){
          
             ps.setString(1, u.getTitre());
             ps.setString(2, u.getMessage());
-       
+            
             ps.execute();
    
 

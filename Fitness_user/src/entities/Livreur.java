@@ -5,10 +5,6 @@
  */
 package entities;
 
-/**
- *
- * @author Mortadha
- */
 public class Livreur extends User{
     private boolean dispo;
     public Livreur() {

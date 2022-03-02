@@ -127,6 +127,7 @@ public class FXMLGSTUserController implements Initializable {
         else{
             comborole.setValue("USER");
         }
+        recherche_avance();
     }
 
     @FXML
@@ -199,6 +200,11 @@ public class FXMLGSTUserController implements Initializable {
                 u.setPhoto("ee");
                 su.ajouter(u);
             }
+            tfnom.setText("");
+            tfprenom.setText("");
+            tfemail.setText("");
+            tfnumero.setText("");
+            pfpassword.setText("");
             TrayNotification tray=new TrayNotification();
             tray.setAnimationType(AnimationType.POPUP);
             tray.setTitle("Ajout avec succes");
@@ -208,6 +214,7 @@ public class FXMLGSTUserController implements Initializable {
             
         }
         refreshlist();
+        recherche_avance();
     }
 
     @FXML
@@ -280,6 +287,11 @@ public class FXMLGSTUserController implements Initializable {
                 u.setPhoto("ee");
                 su.modifer(u, listviewuser.getSelectionModel().getSelectedItem().getId());
             }
+            tfnom.setText("");
+            tfprenom.setText("");
+            tfemail.setText("");
+            tfnumero.setText("");
+            pfpassword.setText("");
             TrayNotification tray=new TrayNotification();
             tray.setAnimationType(AnimationType.POPUP);
             tray.setTitle("modification avec succes");
@@ -289,18 +301,25 @@ public class FXMLGSTUserController implements Initializable {
             
         }
         refreshlist();
+        recherche_avance();
     }
 
     @FXML
     private void supprimer(ActionEvent event) {
         su.supprimer(listviewuser.getSelectionModel().getSelectedItem().getId());
-        refreshlist();
-        TrayNotification tray=new TrayNotification();
+            tfnom.setText("");
+            tfprenom.setText("");
+            tfemail.setText("");
+            tfnumero.setText("");
+            pfpassword.setText("");
+            refreshlist();
+            TrayNotification tray=new TrayNotification();
             tray.setAnimationType(AnimationType.POPUP);
             tray.setTitle("suppression avec succes");
             tray.setMessage("User a ete supprime");
             tray.setNotificationType(NotificationType.SUCCESS);
             tray.showAndDismiss(Duration.millis(2000));
+            recherche_avance();
     }
 
     @FXML
@@ -334,6 +353,9 @@ public class FXMLGSTUserController implements Initializable {
                 (observable,oldValue,newValue)->{
                     
                     filtredlist.setPredicate(user->{
+                        if(newValue==null||newValue.isEmpty()){
+                            return true;
+                        }
                         if(user.getNom().toLowerCase().indexOf(newValue.toLowerCase())!=-1){
                             return true;
                         }
@@ -357,5 +379,25 @@ public class FXMLGSTUserController implements Initializable {
                 }
         );
         listviewuser.setItems(filtredlist);
+    }
+
+    @FXML
+    private void gotoRec(ActionEvent event) {
+        try {
+            
+                Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+
+                stageclose.close();
+                Parent root=FXMLLoader.load(getClass().getResource("/GUI/FXMLAfficherRec.fxml"));
+                Stage stage =new Stage();
+
+                Scene scene = new Scene(root);
+
+                stage.setTitle("Reclamations");
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
 }

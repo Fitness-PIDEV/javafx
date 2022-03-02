@@ -4,8 +4,19 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Ahmed/OneDrive/Bureau/javafx/Fitness_user/src/fitness_user/FXMain.java</file>
-            <file>file:/C:/Users/Ahmed/OneDrive/Bureau/javafx/Fitness_user/src/fitness_user/Fitness_user.java</file>
+            <file>file:/C:/Users/Ahmed/OneDrive/Bureau/javafx/Fitness_user/src/entities/Coach.java</file>
+            <file>file:/C:/Users/Ahmed/OneDrive/Bureau/javafx/Fitness_user/src/GUI/FXMLAjoutRecController.java</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Bureau/javafx/Fitness_user/src/utils/MyDB.java</file>
+            <file>file:/C:/Users/Ahmed/OneDrive/Bureau/javafx/Fitness_user/src/services/Iservice.java</file>
+            <file>file:/C:/Users/Ahmed/OneDrive/Bureau/javafx/Fitness_user/src/entities/Livreur.java</file>
+            <file>file:/C:/Users/Ahmed/OneDrive/Bureau/javafx/Fitness_user/src/GUI/FXMLSignUPController.java</file>
+            <file>file:/C:/Users/Ahmed/OneDrive/Bureau/javafx/Fitness_user/src/services/ServiceReclamation.java</file>
+            <file>file:/C:/Users/Ahmed/OneDrive/Bureau/javafx/Fitness_user/src/entities/Reclamation.java</file>
+            <file>file:/C:/Users/Ahmed/OneDrive/Bureau/javafx/Fitness_user/src/GUI/FXMLLoginController.java</file>
+            <file>file:/C:/Users/Ahmed/OneDrive/Bureau/javafx/Fitness_user/src/fitness_user/Fitness_user.java</file>
+            <file>file:/C:/Users/Ahmed/OneDrive/Bureau/javafx/Fitness_user/src/utils/Mailapi.java</file>
+            <file>file:/C:/Users/Ahmed/OneDrive/Bureau/javafx/Fitness_user/src/GUI/FXMLAfficherRecController.java</file>
+            <file>file:/C:/Users/Ahmed/OneDrive/Bureau/javafx/Fitness_user/src/entities/Admin.java</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Bureau/javafx/Fitness_user/src/services/ServiceUsers.java</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Bureau/javafx/Fitness_user/src/GUI/FXMLGSTUserController.java</file>
         </group>
