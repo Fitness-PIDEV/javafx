@@ -8,6 +8,7 @@ package IService;
 
 import java.sql.SQLException;
 import java.util.List;
+import javafx.scene.control.ComboBox;
 
 /**
  *
@@ -15,7 +16,7 @@ import java.util.List;
  */
 public interface IService<T> {
     void Ajouter(T t) throws SQLException;
-    void Supprimer(int t) throws SQLException;
+    void Supprimer(T t,int id) throws SQLException;
     void Modifier(T t , int id) throws SQLException;
     List<T> Affichertout() throws SQLException;
 }

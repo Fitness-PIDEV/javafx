@@ -5,6 +5,7 @@
  */
 package Service;
 
+import Alert.AlertDialog;
 import IService.IService;
 import Utils.MyConnexion;
 import entites.Categorie;
@@ -14,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -29,14 +31,16 @@ public class categorie_service implements IService<Categorie>{
        PreparedStatement ps;
         
         
-        String query = "INSERT INTO `categorie`( `nom_categorie`) VALUES (?)";
+        String query = "INSERT INTO `categorie`( `nom_categorie`,`etat`) VALUES (?,?)";
         try {
             ps = c.prepareStatement(query);
 
              ps.setString(1, u.getNom_categorie());
+              ps.setInt(2, u.getEtat());
           
             ps.execute();    
             System.out.println(u);
+            AlertDialog.showNotification("ajout","avec succee", AlertDialog.image_checked);
         } catch (Exception e) { 
             System.out.println(e);
         }  
@@ -44,17 +48,33 @@ public class categorie_service implements IService<Categorie>{
 
 
     }
+ public void Supprimer(Categorie ca,int id) throws SQLException {
+        PreparedStatement ps;
 
-    @Override
-    public void Supprimer(int t) throws SQLException {
-     PreparedStatement ps;
-
-        String query = "DELETE FROM `categorie` WHERE `id`=?  ";
+        String query = "UPDATE categorie SET etat=0 WHERE id ='"+id+"'";
   
         try {
             ps = c.prepareStatement(query);
 
-            ps.setInt(1, t);
+//            ps.setInt(1,p.getEtat());
+            //ps.setInt(2,r.getId());
+            ps.execute();
+
+            System.out.println("suppression de  categorie");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+   /* @Override
+    public void Supprimer(int t) throws SQLException {
+     PreparedStatement ps;
+
+        String query = "UPDATE `categorie` SET `etat`=?  ";
+  
+        try {
+            ps = c.prepareStatement(query);
+
+            ps.setInt(1,0);
 
             ps.execute();
 
@@ -64,25 +84,27 @@ public class categorie_service implements IService<Categorie>{
         } 
     
     
-    }
+    }*/
 
     @Override
     public void Modifier(Categorie u, int id) throws SQLException {
  
       PreparedStatement ps;
-        String query = "UPDATE `categorie` SET `nom_categorie`=? WHERE `ID`=?";
+        String query = "UPDATE categorie SET `nom_categorie`=?,`etat`=? WHERE `ID`="+id;
         try {
             
             ps = c.prepareStatement(query);
          
             ps.setString(1, u.getNom_categorie());
+            ps.setInt(2, u.getEtat());
           
-       
-            ps.setInt(2, id);
+            
+            
             ps.execute();
    
 
         } catch (Exception e) {
+            System.out.println(e);
         }
     
     
@@ -91,13 +113,13 @@ public class categorie_service implements IService<Categorie>{
     @Override
     public ObservableList<Categorie> Affichertout() throws SQLException {
     ObservableList<Categorie> list = FXCollections.observableArrayList();
-        String requete = "SELECT * FROM `categorie`";
+        String requete = "SELECT * FROM `categorie` WHERE etat=1";
         try {
             PreparedStatement ps = c.prepareStatement(requete);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                list.add(new Categorie(rs.getInt("ID"),rs.getString("nom_categorie")));
+                list.add(new Categorie(rs.getInt("ID"),rs.getString("nom_categorie"),rs.getInt("etat")));
 
             }
         } catch (SQLException ex) {
@@ -107,22 +129,11 @@ public class categorie_service implements IService<Categorie>{
     
     }
     
-     public ObservableList<Categorie> serach(String cas) throws SQLException {
-        ObservableList<Categorie> list = FXCollections.observableArrayList();
-        String requete = "SELECT * FROM `categorie` where ( nom_categorie LIKE '%" + cas + "%' )";
-        try {
-            PreparedStatement ps = c.prepareStatement(requete);
-            ResultSet rs = ps.executeQuery();
+     
+      public List<Categorie> Recherche(String nom) throws SQLException {
 
-            while (rs.next()) {
-      list.add(new Categorie(rs.getInt("ID"),rs.getString("nom_categorie")));
+        return Affichertout().stream().filter(a -> a.getNom_categorie().equals(nom)).collect(Collectors.toList());
 
-        }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-
-        return list;
     }
 
     

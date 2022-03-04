@@ -41,17 +41,33 @@ public class cours_service implements IService<Cours>{
 
 
     }
+ public void Supprimer(Cours co,int id) throws SQLException {
+        PreparedStatement ps;
 
-    @Override
-    public void Supprimer(int t) throws SQLException {
-     PreparedStatement ps;
-
-        String query = "DELETE FROM `cours` WHERE `id`=?  ";
+        String query = "UPDATE produit SET etat`=? WHERE id`='"+id+"'";
   
         try {
             ps = c.prepareStatement(query);
 
-            ps.setInt(1, t);
+            ps.setInt(1,0);
+            //ps.setInt(2,r.getId());
+            ps.execute();
+
+            System.out.println("suppression de produit");
+        } catch (Exception e) {
+            System.out.println(e);
+        } 
+    }
+   /*@Override
+    public void Supprimer(int t) throws SQLException {
+     PreparedStatement ps;
+
+        String query = "UPDATE `cours` SET `etat`=?  ";
+  
+        try {
+            ps = c.prepareStatement(query);
+
+            ps.setInt(1,0);
 
             ps.execute();
 
@@ -61,7 +77,7 @@ public class cours_service implements IService<Cours>{
         } 
     
     
-    }
+    }*/
 
     @Override
     public void Modifier(Cours u, int id) throws SQLException {
@@ -88,13 +104,13 @@ public class cours_service implements IService<Cours>{
     @Override
     public ObservableList<Cours> Affichertout() throws SQLException {
     ObservableList<Cours> list = FXCollections.observableArrayList();
-        String requete = "SELECT * FROM `cours`";
+        String requete = "SELECT * FROM `cours` WHERE etat=1";
         try {
             PreparedStatement ps = c.prepareStatement(requete);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                list.add(new Cours(rs.getInt("ID"),rs.getString("nom_cours"),rs.getString("duree_cours"),rs.getString("salle"),rs.getString("nom_coach")));
+                list.add(new Cours(rs.getInt("ID"),rs.getString("nom_cours"),rs.getString("duree_cours"),rs.getString("salle"),rs.getString("nom_coach"),rs.getInt("etat")));
 
             }
         } catch (SQLException ex) {
@@ -112,7 +128,7 @@ public class cours_service implements IService<Cours>{
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-      list.add(new Cours(rs.getInt("ID"),rs.getString("nom_cours"),rs.getString("duree_cours"),rs.getString("salle"),rs.getString("nom_coach")));
+      list.add(new Cours(rs.getInt("ID"),rs.getString("nom_cours"),rs.getString("duree_cours"),rs.getString("salle"),rs.getString("nom_coach"),rs.getInt("etat")));
 
         }
         } catch (SQLException ex) {

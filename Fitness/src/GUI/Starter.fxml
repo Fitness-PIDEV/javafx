@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="GUI.StarterController">
+   <children>
+      <Button fx:id="gesprod" layoutX="153.0" layoutY="91.0" mnemonicParsing="false" onAction="#gestionproduit" prefHeight="25.0" prefWidth="265.0" style="-fx-background-color: #5172a7;" text="Gestion Produit" textFill="WHITE">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Button>
+      <Button fx:id="gescat" layoutX="153.0" layoutY="167.0" mnemonicParsing="false" onAction="#gestioncategorie" prefHeight="25.0" prefWidth="265.0" style="-fx-background-color: #5172a7;" text="Gestion Categorie" textFill="WHITE">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

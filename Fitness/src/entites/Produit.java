@@ -16,24 +16,36 @@ public class Produit {
     private int quantite_produit;
     private int ID_categorie;
     private String image_produit;
+     private int etat;
 
-    public Produit(int ID, String nom_produit,int prix_produit,String image_produit, int quantite_produit, int ID_categorie) {
+
+    public Produit(int ID, String nom_produit,int prix_produit,String image_produit, int quantite_produit, int ID_categorie, int etat) {
         this.ID = ID;
         this.nom_produit = nom_produit;
         this.prix_produit = prix_produit;
         this.quantite_produit = quantite_produit;
         this.ID_categorie = ID_categorie;
         this.image_produit= image_produit;
+        this.etat= etat;
     }
+     public Produit(int ID) {
+        this.ID = ID;
+       
+    }
+    
 
-    public Produit(String nom_produit, int prix_produit,String image_produit, int quantite_produit, int ID_categorie) {
+    public Produit(String nom_produit, int prix_produit,String image_produit, int quantite_produit, int ID_categorie, int etat) {
         this.nom_produit = nom_produit;
         this.prix_produit = prix_produit;
         this.quantite_produit = quantite_produit;
         this.ID_categorie = ID_categorie;
         this.image_produit= image_produit;
+         this.etat= etat;
     }
 
+    public Produit() {
+       
+    }
 
     public int getID() {
         return ID;
@@ -83,10 +95,21 @@ public class Produit {
         this.image_produit = image_produit;
     }
 
+    public int getEtat() {
+        return etat;
+    }
+
+    public void setEtat(int etat) {
+        this.etat = etat;
+    }
+
     @Override
     public String toString() {
-        return "Produit{" + "ID=" + ID + ", nom_produit=" + nom_produit + ", prix_produit=" + prix_produit + ", quantite_produit=" + quantite_produit + ", ID_categorie=" + ID_categorie + ", image_produit=" + image_produit + '}';
+        return "Produit{" + "ID=" + ID + ", nom_produit=" + nom_produit + ", prix_produit=" + prix_produit + ", quantite_produit=" + quantite_produit + ", ID_categorie=" + ID_categorie + ", image_produit=" + image_produit + ", etat=" + etat + "\n}";
     }
+    
+
+    
 
    
 

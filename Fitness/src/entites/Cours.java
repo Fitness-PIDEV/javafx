@@ -15,20 +15,23 @@ public class Cours {
     String duree_cours;
     String salle;
     String nom_coach;
+    int etat;
 
-    public Cours(int ID, String nom_cours, String duree_cours, String salle, String nom_coach) {
+    public Cours(int ID, String nom_cours, String duree_cours, String salle, String nom_coach,int etat) {
         this.ID = ID;
         this.nom_cours = nom_cours;
         this.duree_cours = duree_cours;
         this.salle = salle;
         this.nom_coach = nom_coach;
+        this.etat=etat;
     }
 
-    public Cours(String nom_cours, String duree_cours, String salle, String nom_coach) {
+    public Cours(String nom_cours, String duree_cours, String salle, String nom_coach,int etat) {
         this.nom_cours = nom_cours;
         this.duree_cours = duree_cours;
         this.salle = salle;
         this.nom_coach = nom_coach;
+         this.etat=etat;
     }
 
     public int getID() {
@@ -71,10 +74,20 @@ public class Cours {
         this.nom_coach = nom_coach;
     }
 
+    public int getEtat() {
+        return etat;
+    }
+
+    public void setEtat(int etat) {
+        this.etat = etat;
+    }
+
     @Override
     public String toString() {
-        return "Cours{" + "ID_cours=" + ID + ", nom_cours=" + nom_cours + ", duree_cours=" + duree_cours + ", salle=" + salle + ", nom_coach=" + nom_coach + '}';
+        return "Cours{" + "ID=" + ID + ", nom_cours=" + nom_cours + ", duree_cours=" + duree_cours + ", salle=" + salle + ", nom_coach=" + nom_coach + ", etat=" + etat + '}';
     }
+
+    
 
     
     

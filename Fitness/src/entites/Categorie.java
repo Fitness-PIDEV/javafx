@@ -12,18 +12,25 @@ package entites;
 public class Categorie {
     private int ID;
     private String nom_categorie;
+    private int etat;
 
-    public Categorie(String nom_categorie) {
+    public Categorie(String nom_categorie, int etat) {
         this.nom_categorie = nom_categorie;
+          this.etat = etat;
     }
 
-    public Categorie(int ID, String nom_categorie) {
+    public Categorie(int ID, String nom_categorie, int etat) {
         this.ID = ID;
         this.nom_categorie = nom_categorie;
+                  this.etat = etat;
+
     }
 
     public Categorie() {
+       
     }
+
+  
 
     public int getID() {
         return ID;
@@ -41,27 +48,23 @@ public class Categorie {
         this.nom_categorie = nom_categorie;
     }
 
+    public int getEtat() {
+        return etat;
+    }
+
+    public void setEtat(int etat) {
+        this.etat = etat;
+    }
+
     @Override
     public String toString() {
-        return "Categorie{" + "ID=" + ID + ", nom_categorie=" + nom_categorie + '}';
+        return "Categorie{" + "ID=" + ID + ", nom_categorie=" + nom_categorie + ", etat=" + etat + '}';
     }
 
-    public String getNom_produit() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
+    
 
-    public String getPrix_produit() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public int getQuantite_produitt() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public int getPrix_produi() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-            
+       
       
     
 }
