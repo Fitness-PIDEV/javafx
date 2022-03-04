@@ -35,7 +35,7 @@ public class produit_service implements IService<Produit>{
        PreparedStatement ps;
         
         
-        String query = "INSERT INTO `produit`( `nom_produit`, `prix_produit`, `image_produit`, `quantite_produit`, `ID_categorie`, `etat`) VALUES ('"+u.getNom_produit()+"','"+u.getPrix_produit()+"','"+u.getImage_produit()+"','"+u.getQuantite_produit()+"','"+u.getID_categorie()+"','"+u.getEtat()+"')";
+        String query = "INSERT INTO `produit`( `nom_produit`, `prix_produit`, `image_produit`, `quantite_produit`, `ID_categorie`, `etat`, `description`) VALUES ('"+u.getNom_produit()+"','"+u.getPrix_produit()+"','"+u.getImage_produit()+"','"+u.getQuantite_produit()+"','"+u.getID_categorie()+"','"+u.getEtat()+"','"+u.getDescription()+"')";
         try {
             ps = c.prepareStatement(query);
 
@@ -115,7 +115,7 @@ public class produit_service implements IService<Produit>{
     @Override
   public void Modifier(Produit p, int id) {
        PreparedStatement ps;
-        String query = "UPDATE produit SET `nom_produit`=?,`prix_produit`=?,`image_produit`=?,`quantite_produit`=?,`ID_categorie`=?,`etat`=? WHERE `ID`="+id;
+        String query = "UPDATE produit SET `nom_produit`=?,`prix_produit`=?,`image_produit`=?,`quantite_produit`=?,`ID_categorie`=?,`etat`=?,`descriprion`=? WHERE `ID`="+id;
         try {
             
             ps = c.prepareStatement(query);
@@ -126,6 +126,7 @@ public class produit_service implements IService<Produit>{
              ps.setInt(4, p.getQuantite_produit());
               ps.setInt(5, p.getID_categorie());
                ps.setInt(6, p.getEtat());
+                 ps.setString(7, p.getDescription());
             
             
             ps.execute();
@@ -146,7 +147,7 @@ public class produit_service implements IService<Produit>{
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                list.add(new Produit(rs.getInt("ID"),rs.getString("nom_produit"),rs.getInt("prix_produit"),rs.getString("image_produit"),rs.getInt("quantite_produit"),rs.getInt("ID_categorie"),rs.getInt("etat")));
+                list.add(new Produit(rs.getInt("ID"),rs.getString("nom_produit"),rs.getInt("prix_produit"),rs.getString("image_produit"),rs.getInt("quantite_produit"),rs.getInt("ID_categorie"),rs.getInt("etat"),rs.getString("description")));
 
             }
         } catch (SQLException ex) {
@@ -173,7 +174,7 @@ public class produit_service implements IService<Produit>{
             ps.setInt(1,categorie_id);
            ResultSet rs = ps.executeQuery();
           while (rs.next()){
-          produits.add(new Produit(rs.getInt("ID"),rs.getString("nom_produit"),rs.getInt("prix_produit"),rs.getString("image_produit"),rs.getInt("quantite_produit"),rs.getInt("ID_categorie"),rs.getInt("etat")));
+          produits.add(new Produit(rs.getInt("ID"),rs.getString("nom_produit"),rs.getInt("prix_produit"),rs.getString("image_produit"),rs.getInt("quantite_produit"),rs.getInt("ID_categorie"),rs.getInt("etat"),rs.getString("description")));
           
           }
             System.out.println("affichage produit par categorie");

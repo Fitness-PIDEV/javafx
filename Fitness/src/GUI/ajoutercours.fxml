@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="primary_color" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AjoutercoursController">
+   <center>
+      <VBox prefHeight="463.0" prefWidth="651.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="0.0" prefWidth="700.0" />
+            <AnchorPane prefHeight="513.0" prefWidth="700.0" styleClass="secondary-color" stylesheets="@../css/style.css">
+               <children>
+                  <Label layoutX="296.0" layoutY="42.0" prefHeight="46.0" prefWidth="237.0" text="Gestion Cours">
+                     <font>
+                        <Font name="System Bold" size="31.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="cnom" layoutX="253.0" layoutY="176.0" style="-fx-background-color: transparant; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+                  <TextField fx:id="csalle" layoutX="510.0" layoutY="176.0" style="-fx-background-color: transparant; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+                  <TextField fx:id="cetat" layoutX="510.0" layoutY="295.0" style="-fx-background-color: transparant; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+                  <TextField fx:id="cduree" layoutX="253.0" layoutY="295.0" style="-fx-background-color: transparant; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+                  <TextField fx:id="cnomcoach" layoutX="253.0" layoutY="233.0" style="-fx-background-color: transparant; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+                  <Label layoutX="159.0" layoutY="181.0" text="Nom Cours">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="460.0" layoutY="300.0" text="Etat">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="440.0" layoutY="181.0" text="Salle">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="165.0" layoutY="300.0" text="Duree">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="154.0" layoutY="238.0" text="Nom Coach">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="Cinsert" layoutX="356.0" layoutY="339.0" mnemonicParsing="false" onAction="#insertionc" prefHeight="31.0" prefWidth="177.0" style="-fx-background-color: #5172a7;" text="Ajouter le Cours" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <AnchorPane prefHeight="500.0" prefWidth="140.0" style="-fx-background-color: #5172a7;">
+                     <children>
+                        <Button fx:id="GestProduit6" layoutX="3.0" layoutY="95.0" mnemonicParsing="false" onAction="#GestProduit6" prefHeight="36.0" prefWidth="134.0" style="-fx-background-color: #FFFFFF;" text="Gestion Produit" />
+                        <Button fx:id="Gestcategorie6" layoutX="3.0" layoutY="139.0" mnemonicParsing="false" onAction="#Gestcategorie6" prefHeight="36.0" prefWidth="134.0" style="-fx-background-color: #FFFFFF;" text="Gestion categorie" />
+                        <Button fx:id="Gestcours6" layoutX="3.0" layoutY="184.0" mnemonicParsing="false" onAction="#Gestcours6" prefHeight="36.0" prefWidth="134.0" style="-fx-background-color: #FFFFFF;" text="Gestion cours" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

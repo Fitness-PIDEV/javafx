@@ -5,9 +5,10 @@
  */
 package GUI;
 
-import Alert.AlertDialog;
-import entites.Produit;
+import Service.cours_service;
 import Service.produit_service;
+import entites.Cours;
+import entites.Produit;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -31,29 +32,27 @@ import javax.swing.JOptionPane;
  *
  * @author USER
  */
-public class AjouterProduitController implements Initializable {
-    
-      @FXML
-    private TextField Ffnom;
-         @FXML
-    private TextField Ffcategorie;
-            @FXML
-    private TextField Ffquantite;
-               @FXML
-    private TextField Ffetat;
-                  @FXML
-    private TextField Ffimage;
-                     @FXML
-    private TextField Ffprix;
-  @FXML
-    private Button insertion;
+public class AjoutercoursController implements Initializable {
+
     @FXML
-    private Button GestProduit1;
+    private TextField cnom;
     @FXML
-    private Button Gestcategorie1;
+    private TextField csalle;
     @FXML
-    private Button Gestcours1;
-    
+    private TextField cetat;
+    @FXML
+    private TextField cduree;
+    @FXML
+    private TextField cnomcoach;
+    @FXML
+    private Button Cinsert;
+    @FXML
+    private Button GestProduit6;
+    @FXML
+    private Button Gestcategorie6;
+    @FXML
+    private Button Gestcours6;
+
     /**
      * Initializes the controller class.
      */
@@ -62,16 +61,17 @@ public class AjouterProduitController implements Initializable {
         // TODO
     }    
 
-    private void insertion(ActionEvent event) throws SQLException {
-        if(verifUserChampsajouter()){
-        produit_service sp=new produit_service(); 
-        Produit u = new Produit();
-        u.setNom_produit(Ffnom.getText());
-        u.setPrix_produit(Integer.parseInt(Ffprix.getText()));
-        u.setImage_produit(Ffimage.getText());
-        u.setID_categorie(Integer.parseInt(Ffcategorie.getText()));
-        u.setQuantite_produit(Integer.parseInt(Ffquantite.getText()));
-        u.setEtat(Integer.parseInt(Ffetat.getText()));
+    @FXML
+    private void insertionc(ActionEvent event) throws SQLException {
+     if(verifUserChampsajouter()){
+         cours_service sp=new cours_service(); 
+        Cours u = new Cours();
+        u.setNom_cours(cnom.getText());
+        u.setEtat(Integer.parseInt(cetat.getText()));
+        u.setNom_coach(cnomcoach.getText());
+        u.setDuree_cours(cduree.getText());
+        u.setSalle(csalle.getText());
+      
             sp.Ajouter(u);
 //            System.out.println("GUI.AjouterProduitController.insertion()");
            
@@ -83,7 +83,7 @@ public class AjouterProduitController implements Initializable {
                 Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
             
             stageclose.close();
-                Parent root=FXMLLoader.load(getClass().getResource("affichageproduit.fxml"));
+                Parent root=FXMLLoader.load(getClass().getResource("affichagecours.fxml"));
             Stage stage =new Stage();
             
                 Scene scene = new Scene(root);
@@ -102,41 +102,37 @@ public class AjouterProduitController implements Initializable {
 
         String styledefault = "-fx-border-color: green;";
 
-        Ffnom.setStyle(styledefault);
-        Ffcategorie.setStyle(styledefault);
-        Ffprix.setStyle(styledefault);
-        Ffetat.setStyle(styledefault);
-        Ffquantite.setStyle(styledefault);
-        Ffimage.setStyle(styledefault);
+        cnom.setStyle(styledefault);
+        cnomcoach.setStyle(styledefault);
+        cduree.setStyle(styledefault);
+        csalle.setStyle(styledefault);
+        cetat.setStyle(styledefault);
 
-        if (Ffnom.getText().equals("")) {
-            Ffnom.setStyle(style);
+        if (cnom.getText().equals("")) {
+            cnom.setStyle(style);
             verif = 1;
         }
 //        if (dateC.getValue().equals("")) {
 //            dateC.setStyle(style);
 //            verif = 1;
 //        }
-        if (Ffcategorie.getText().equals("")) {
-            Ffcategorie.setStyle(style);
+        if (cnomcoach.getText().equals("")) {
+            cnomcoach.setStyle(style);
             verif = 1;
         }
-        if (Ffprix.getText().equals("")) {
-            Ffprix.setStyle(style);
+        if (cduree.getText().equals("")) {
+            cduree.setStyle(style);
             verif = 1;
         }
-         if (Ffetat.getText().equals("")) {
-            Ffetat.setStyle(style);
+         if (csalle.getText().equals("")) {
+            csalle.setStyle(style);
             verif = 1;
         }
-          if (Ffquantite.getText().equals("")) {
-            Ffquantite.setStyle(style);
+          if (cetat.getText().equals("")) {
+            cetat.setStyle(style);
             verif = 1;
         }
-           if (Ffimage.getText().equals("")) {
-            Ffimage.setStyle(style);
-            verif = 1;
-        }
+           
         if (verif == 0) {
             return true;
         }
@@ -145,7 +141,8 @@ public class AjouterProduitController implements Initializable {
         return false;
     }
 
-    private void GestProduit1(ActionEvent event) {
+    @FXML
+    private void GestProduit6(ActionEvent event) {
          try {
 
                 Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -164,7 +161,8 @@ public class AjouterProduitController implements Initializable {
         }
     }
 
-    private void Gestcategorie1(ActionEvent event) {
+    @FXML
+    private void Gestcategorie6(ActionEvent event) {
         try {
 
                 Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -183,7 +181,8 @@ public class AjouterProduitController implements Initializable {
         }
     }
 
-    private void Gestcours1(ActionEvent event) {
+    @FXML
+    private void Gestcours6(ActionEvent event) {
         try {
 
                 Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -201,6 +200,5 @@ public class AjouterProduitController implements Initializable {
                 Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-   
+    
 }

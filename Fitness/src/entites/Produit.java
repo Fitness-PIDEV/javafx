@@ -16,16 +16,18 @@ public class Produit {
     private int quantite_produit;
     private int ID_categorie;
     private String image_produit;
+    private String description;
      private int etat;
 
 
-    public Produit(int ID, String nom_produit,int prix_produit,String image_produit, int quantite_produit, int ID_categorie, int etat) {
+    public Produit(int ID, String nom_produit,int prix_produit,String image_produit, int quantite_produit, int ID_categorie, int etat, String description) {
         this.ID = ID;
         this.nom_produit = nom_produit;
         this.prix_produit = prix_produit;
         this.quantite_produit = quantite_produit;
         this.ID_categorie = ID_categorie;
         this.image_produit= image_produit;
+        this.description= description;
         this.etat= etat;
     }
      public Produit(int ID) {
@@ -34,11 +36,12 @@ public class Produit {
     }
     
 
-    public Produit(String nom_produit, int prix_produit,String image_produit, int quantite_produit, int ID_categorie, int etat) {
+    public Produit(String nom_produit, int prix_produit,String image_produit, int quantite_produit, int ID_categorie, int etat,String description) {
         this.nom_produit = nom_produit;
         this.prix_produit = prix_produit;
         this.quantite_produit = quantite_produit;
         this.ID_categorie = ID_categorie;
+        this.description = description;
         this.image_produit= image_produit;
          this.etat= etat;
     }
@@ -103,10 +106,20 @@ public class Produit {
         this.etat = etat;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
-        return "Produit{" + "ID=" + ID + ", nom_produit=" + nom_produit + ", prix_produit=" + prix_produit + ", quantite_produit=" + quantite_produit + ", ID_categorie=" + ID_categorie + ", image_produit=" + image_produit + ", etat=" + etat + "\n}";
+        return "Produit{" + "ID=" + ID + ", nom_produit=" + nom_produit + ", prix_produit=" + prix_produit + ", quantite_produit=" + quantite_produit + ", ID_categorie=" + ID_categorie + ", image_produit=" + image_produit + ", description=" + description + ", etat=" + etat + '}';
     }
+
+   
     
 
     

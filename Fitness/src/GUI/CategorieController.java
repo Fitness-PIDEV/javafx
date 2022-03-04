@@ -120,6 +120,22 @@ public class CategorieController implements Initializable {
 
     @FXML
     private void Gestcours3(ActionEvent event) {
+        try {
+
+                Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            stageclose.close();
+                Parent root=FXMLLoader.load(getClass().getResource("affichagecours.fxml"));
+            Stage stage =new Stage();
+            
+                Scene scene = new Scene(root);
+            
+            
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

@@ -25,6 +25,10 @@ public class Cours {
         this.nom_coach = nom_coach;
         this.etat=etat;
     }
+     public Cours(int ID) {
+        this.ID = ID;
+       
+    }
 
     public Cours(String nom_cours, String duree_cours, String salle, String nom_coach,int etat) {
         this.nom_cours = nom_cours;
@@ -32,6 +36,9 @@ public class Cours {
         this.salle = salle;
         this.nom_coach = nom_coach;
          this.etat=etat;
+    }
+     public Cours() {
+        
     }
 
     public int getID() {

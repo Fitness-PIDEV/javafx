@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -28,7 +29,7 @@ public class cours_service implements IService<Cours>{
        PreparedStatement ps;
         
         
-        String query = "INSERT INTO `cours`( `nom_cours`, `duree_cours`, `salle`, `nom_coach`) VALUES ('"+u.getNom_cours()+"','"+u.getDuree_cours()+"','"+u.getSalle()+"','"+u.getNom_coach()+"')";
+        String query = "INSERT INTO `cours`( `nom_cours`, `duree_cours`, `salle`, `nom_coach`, `etat`) VALUES ('"+u.getNom_cours()+"','"+u.getDuree_cours()+"','"+u.getSalle()+"','"+u.getNom_coach()+"','"+u.getEtat()+"')";
         try {
             ps = c.prepareStatement(query);
 
@@ -80,24 +81,27 @@ public class cours_service implements IService<Cours>{
     }*/
 
     @Override
-    public void Modifier(Cours u, int id) throws SQLException {
- 
-      PreparedStatement ps;
-        String query = "UPDATE `cours` SET `nom_cours`=? WHERE `ID`=?";
+     public void Modifier(Cours p, int id) {
+       PreparedStatement ps;
+        String query = "UPDATE cours SET `nom_cours`=?,`duree_cours`=?,`salle`=?,`nom_coach`=?,`etat`=? WHERE `ID`="+id;
         try {
             
             ps = c.prepareStatement(query);
          
-            ps.setString(1, u.getNom_cours());
-          
-       
-            ps.setInt(2, id);
+            ps.setString(1, p.getNom_cours());
+            ps.setInt(2, p.getEtat());
+            ps.setString(3, p.getNom_coach());
+             ps.setString(4, p.getDuree_cours());
+              ps.setString(5, p.getSalle());
+               
+            
+            
             ps.execute();
    
 
         } catch (Exception e) {
+            System.out.println(e);
         }
-    
     
     }
 
@@ -120,22 +124,10 @@ public class cours_service implements IService<Cours>{
     
     }
     
-     public ObservableList<Cours> serach(String cas) throws SQLException {
-        ObservableList<Cours> list = FXCollections.observableArrayList();
-        String requete = "SELECT * FROM `cours` where ( nom_cours LIKE '%" + cas + "%' )";
-        try {
-            PreparedStatement ps = c.prepareStatement(requete);
-            ResultSet rs = ps.executeQuery();
+      public List<Cours> Recherche(String nom) throws SQLException {
 
-            while (rs.next()) {
-      list.add(new Cours(rs.getInt("ID"),rs.getString("nom_cours"),rs.getString("duree_cours"),rs.getString("salle"),rs.getString("nom_coach"),rs.getInt("etat")));
+        return Affichertout().stream().filter(a -> a.getNom_cours().equals(nom)).collect(Collectors.toList());
 
-        }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-
-        return list;
     }
 
     
