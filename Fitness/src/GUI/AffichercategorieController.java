@@ -6,14 +6,16 @@
 package GUI;
 
 import Alert.AlertDialog;
-import Service.categorie_service;
-import Service.produit_service;
-import entites.Categorie;
-import entites.Produit;
+import services.categorie_service;
+import services.produit_service;
+import entities.Categorie;
+import entities.Produit;
+import fitness_user.FXMain;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +28,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -58,12 +62,6 @@ public class AffichercategorieController implements Initializable {
         ObservableList<Categorie> categorie=FXCollections.observableArrayList();
     @FXML
     private TextField cherchercat;
-    @FXML
-    private Button GestProduit4;
-    @FXML
-    private Button Gestcategorie4;
-    @FXML
-    private Button Gestcours4;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -120,9 +118,23 @@ public class AffichercategorieController implements Initializable {
 //        JOptionPane.showMessageDialog(null, "Produit Supprimée !");
 //        afficher();
         //afficherID();
-        sr.Supprimer(c,listeid.getSelectionModel().getSelectedItem().getID());
-        AlertDialog.showNotification("supprimer","avec succee", AlertDialog.image_checked);
-        afficher();
+        
+        
+        Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION);
+        alert2.setTitle("Confirmation");
+        alert2.setHeaderText("voulez vous vraiment supprimer ce categorie?");
+        Optional<ButtonType> result = alert2.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            sr.Supprimer(c,listeid.getSelectionModel().getSelectedItem().getID());
+            afficher();
+            /*TrayNotification tray=new TrayNotification();
+            tray.setAnimationType(AnimationType.POPUP);
+            tray.setTitle("suppression avec succes");
+            tray.setMessage("Reclmation a ete supprime");
+            tray.setNotificationType(NotificationType.SUCCESS);
+            tray.showAndDismiss(Duration.millis(2000));*/
+            AlertDialog.showNotification("supprimer","avec succee", AlertDialog.image_checked);
+    }
     }
 
     @FXML
@@ -141,7 +153,7 @@ public class AffichercategorieController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
-                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -171,7 +183,7 @@ public class AffichercategorieController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
-                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -191,13 +203,129 @@ public class AffichercategorieController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
-                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
 
     @FXML
     private void Gestcours4(ActionEvent event) {
+        try {
+
+                Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            stageclose.close();
+                Parent root=FXMLLoader.load(getClass().getResource("affichagecours.fxml"));
+            Stage stage =new Stage();
+            
+                Scene scene = new Scene(root);
+            
+            
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void goHome(ActionEvent event) {
+        try {
+            
+                Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+
+                stageclose.close();
+                Parent root=FXMLLoader.load(getClass().getResource("/GUI/Admin_stat.fxml"));
+                Stage stage =new Stage();
+
+                Scene scene = new Scene(root);
+
+                stage.setTitle("Home");
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+
+    @FXML
+    private void gotouser(ActionEvent event) {
+        try {
+            
+                Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+
+                stageclose.close();
+                Parent root=FXMLLoader.load(getClass().getResource("/GUI/FXMLGSTUser.fxml"));
+                Stage stage =new Stage();
+
+                Scene scene = new Scene(root);
+
+                stage.setTitle("Gestion Utilisateur");
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+
+    @FXML
+    private void gotoRec(ActionEvent event) {
+        try {
+            
+                Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+
+                stageclose.close();
+                Parent root=FXMLLoader.load(getClass().getResource("/GUI/FXMLAfficherRec.fxml"));
+                Stage stage =new Stage();
+
+                Scene scene = new Scene(root);
+
+                stage.setTitle("Gestion Reclamation");
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+
+    @FXML
+    private void goplanning(ActionEvent event) {
+        try {
+
+                Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            stageclose.close();
+                Parent root=FXMLLoader.load(getClass().getResource("afficherplanning.fxml"));
+            Stage stage =new Stage();
+            
+                Scene scene = new Scene(root);
+            
+            
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void goreservation(ActionEvent event) {
+        try {
+            
+                Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            stageclose.close();
+                Parent root=FXMLLoader.load(getClass().getResource("AfficherReservation.fxml"));
+            Stage stage =new Stage();
+            
+                Scene scene = new Scene(root);
+            
+            
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

@@ -6,13 +6,17 @@
 package GUI;
 
 import Alert.AlertDialog;
-import Service.produit_service;
-import entites.Produit;
+import services.planning_service;
+import entities.planning;
+import fitness_user.FXMain;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,8 +29,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -34,7 +41,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javax.swing.JOptionPane;
+import utils.Mailapi;
 
 /**
  * FXML Controller class
@@ -42,75 +49,61 @@ import javax.swing.JOptionPane;
  * @author USER
  */
 public class StartController implements Initializable {
-    
-    
+
     @FXML
     private Button ajout;
+  
     @FXML
-    private Button supprimer;
+    private Button supp;
     @FXML
-    private Button mod;
+    private Button modif;
     @FXML
-    private ListView<Produit> idlist;
+    private TextField rech;
     @FXML
-    private TextField Fnom;
+    private ListView<planning> idlist;
     @FXML
-    private TextField Fetat;
+    private DatePicker dateid;
     @FXML
-    private TextField Fcategorie;
+    private TextField salleid;
     @FXML
-    private TextField Fquantite;
+    private TextField nomcoach;
     @FXML
-    private TextField Fimage;
+    private TextField noomc;
     @FXML
-    private TextField Fprix;
+    private TextField dureec;
 
     /**
      * Initializes the controller class.
      */
-    ObservableList<Produit> produit=FXCollections.observableArrayList();
+     ObservableList<planning> planning=FXCollections.observableArrayList();
     @FXML
-    private TextField search;
+    private TextField idc;
     @FXML
-    private Button GestProduit2;
-    @FXML
-    private Button Gestcategorie2;
-    @FXML
-    private Button Gestcours2;
+    private Button ref;
+    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
             afficher();
-            //afficherID();
-            // TODO
         } catch (SQLException ex) {
             Logger.getLogger(StartController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }   
-//    public void afficherID(){
-//    produit_service sr = new produit_service();
-//
-//        ArrayList lv;
-//
-//        lv = (ArrayList) sr.afficherid();
-//        ObservableList data = FXCollections.observableArrayList(lv);
-//        idsupp.setItems(data);    
-//    }
-    public void afficher() throws SQLException{
-        produit_service sr = new produit_service();
-        produit=FXCollections.observableArrayList(sr.Affichertout());
-        idlist.setItems(produit);
+    }    
+ public void afficher() throws SQLException{
+        planning_service sr = new planning_service();
+        planning=FXCollections.observableArrayList(sr.Affichertout());
+        idlist.setItems(planning);
     }
-
-    
     @FXML
-    private void ajout(ActionEvent event) {
+    private void ajouter(ActionEvent event) {
+        
         try {
             
                 Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
             
             stageclose.close();
-                Parent root=FXMLLoader.load(getClass().getResource("AjouterProduit.fxml"));
+                Parent root=FXMLLoader.load(getClass().getResource("ajouterPlanning.fxml"));
             Stage stage =new Stage();
             
                 Scene scene = new Scene(root);
@@ -119,69 +112,183 @@ public class StartController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
-                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
 
     @FXML
-    private void supprimer(ActionEvent event) throws SQLException {
-        produit_service sr = new produit_service();
-        Produit p = new Produit();
-//        p.setID(idsupp.getSelectionModel().getSelectedItem());
-//        sr.Supprimer(p,idsupp);
-//        JOptionPane.showMessageDialog(null, "Produit Supprimée !");
-//        afficher();
-        //afficherID();
-        sr.Supprimer(p,idlist.getSelectionModel().getSelectedItem().getID());
-        AlertDialog.showNotification("supprimer","avec succee", AlertDialog.image_checked);
+    private void suppression(ActionEvent event) throws SQLException {
+        planning_service sr = new planning_service();
+        planning p = new planning();
+        Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION);
+        alert2.setTitle("Confirmation");
+        alert2.setHeaderText("voulez vous vraiment supprimer ce palnning?");
+        Optional<ButtonType> result = alert2.showAndWait();
+        if (result.get() == ButtonType.OK) {
+        sr.Supprimer(p,idlist.getSelectionModel().getSelectedItem().getId());
         afficher();
-
+                salleid.setText("");
+                dureec.setText("");
+                idc.setText("");
+                nomcoach.setText("");
+                noomc.setText("");
+            /*TrayNotification tray=new TrayNotification();
+            tray.setAnimationType(AnimationType.POPUP);
+            tray.setTitle("suppression avec succes");
+            tray.setMessage("Reclmation a ete supprime");
+            tray.setNotificationType(NotificationType.SUCCESS);
+            tray.showAndDismiss(Duration.millis(2000));*/
+                AlertDialog.showNotification("supprimer","avec succee", AlertDialog.image_checked);
+                
+        } else {
+            alert2.close();
+        }
     }
 
-    @FXML
-    private void modifier(ActionEvent event) throws SQLException {
-         Produit p = new Produit();
-         produit_service sr = new produit_service();
-        p.setNom_produit(Fnom.getText());
-                p.setPrix_produit(Integer.parseInt(Fprix.getText()));
-                p.setEtat(Integer.parseInt(Fetat.getText()));
-                p.setQuantite_produit(Integer.parseInt(Fquantite.getText()));
-                p.setID_categorie(Integer.parseInt(Fcategorie.getText()));
-                p.setImage_produit(Fimage.getText());
-                sr.Modifier(p, idlist.getSelectionModel().getSelectedItem().getID());
-                AlertDialog.showNotification("modifier","avec succee", AlertDialog.image_checked);
+      @FXML
+    private void modification(ActionEvent event) throws SQLException{
+        
+
+            
+            planning p = new planning();
+         planning_service sr = new planning_service();
+                p.setSalle(salleid.getText());
+                p.setDuree(Integer.parseInt(dureec.getText()));
+                p.setId_cours(Integer.parseInt(idc.getText()));
+                LocalDate Fdate = dateid.getValue();
+                String Sdate = String.valueOf(Fdate);
+                p.setDate(Date.valueOf(Sdate));
+                p.setNom_coach(nomcoach.getText());
+                p.setNom_cours(noomc.getText());
+                sr.Modifier(p, idlist.getSelectionModel().getSelectedItem().getId());
                 afficher();
+                salleid.setText("");
+                dureec.setText("");
+                idc.setText("");
+                nomcoach.setText("");
+                noomc.setText("");
+    }
+    @FXML
+    private void recherche(ActionEvent event) throws SQLException {
+    planning_service ps = new planning_service();
+    List<planning> planning = ps.RechercheNomCours (rech.getText());
+    idlist.getItems().clear();
+    idlist.getItems().removeAll(planning);
+    idlist.getItems().addAll(planning);
+    
     }
 
     @FXML
-    private void fill(MouseEvent event) {
-        Produit p= idlist.getSelectionModel().getSelectedItem();
-        Fnom.setText(p.getNom_produit());
-        Fprix.setText(String.valueOf(p.getPrix_produit()));
-        Fetat.setText(String.valueOf(p.getEtat()));
-        Fquantite.setText(String.valueOf(p.getQuantite_produit()));
-        Fcategorie.setText(String.valueOf(p.getID_categorie()));
-        Fimage.setText(p.getImage_produit());
-        
-        
-        
-    }
-
-    @FXML
-    private void search(ActionEvent event) throws SQLException {
-                 produit_service sr = new produit_service();
-                 List<Produit> p=sr.Recherche(search.getText());
-                 idlist.getItems().clear();
-                 idlist.getItems().removeAll(produit);
-                 idlist.getItems().addAll(p);
-              
-
+    private void list(MouseEvent event) {
+//         int y = ( dateid.getValue().getYear() % 100 )+ 100 ;
+//            int m = dateid.getValue().getMonthValue()-1;
+//            int day= dateid.getValue().getDayOfMonth();
+//            java.util.Date d = new java.util.Date(y,m,day);
+        planning p= idlist.getSelectionModel().getSelectedItem();
+        idc.setText(String.valueOf(p.getId_cours()));
+        salleid.setText(p.getSalle());
+        dateid.setValue(LocalDate.now());
+        nomcoach.setText(p.getNom_coach());
+        noomc.setText(p.getNom_cours());
+        dureec.setText(String.valueOf(p.getDuree()));
         
     }
 
     @FXML
-    private void GestProduit2(ActionEvent event) {
+    private void refrech(ActionEvent event) {
+    try {
+            afficher();
+        } catch (SQLException ex) {
+            Logger.getLogger(FRONTPController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void gotouser(ActionEvent event) {
+        try {
+            
+                Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+
+                stageclose.close();
+                Parent root=FXMLLoader.load(getClass().getResource("/GUI/FXMLGSTUser.fxml"));
+                Stage stage =new Stage();
+
+                Scene scene = new Scene(root);
+
+                stage.setTitle("Gestion Utilisateur");
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+
+    @FXML
+    private void gotoRec(ActionEvent event) {
+         try {
+            
+                Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+
+                stageclose.close();
+                Parent root=FXMLLoader.load(getClass().getResource("/GUI/FXMLAfficherRec.fxml"));
+                Stage stage =new Stage();
+
+                Scene scene = new Scene(root);
+
+                stage.setTitle("Gestion Reclamation");
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+
+    @FXML
+    private void goplanning(ActionEvent event) {
+    }
+
+    @FXML
+    private void goreservation(ActionEvent event) {
+         try {
+            
+                Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            stageclose.close();
+                Parent root=FXMLLoader.load(getClass().getResource("AfficherReservation.fxml"));
+            Stage stage =new Stage();
+            
+                Scene scene = new Scene(root);
+            
+            
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void Gestcours5(ActionEvent event) {
+        try {
+
+                Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            stageclose.close();
+                Parent root=FXMLLoader.load(getClass().getResource("affichagecours.fxml"));
+            Stage stage =new Stage();
+            
+                Scene scene = new Scene(root);
+            
+            
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void GestProduit5(ActionEvent event) {
         try {
 
                 Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -196,13 +303,13 @@ public class StartController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
-                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @FXML
-    private void Gestcategorie2(ActionEvent event) {
-          try {
+    private void Gestcategorie5(ActionEvent event) {
+        try {
 
                 Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
             
@@ -216,12 +323,29 @@ public class StartController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
-                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
 
     @FXML
-    private void Gestcours2(ActionEvent event) {
+    private void gohome(ActionEvent event) {
+        try {
+            
+                Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+
+                stageclose.close();
+                Parent root=FXMLLoader.load(getClass().getResource("/GUI/Admin_stat.fxml"));
+                Stage stage =new Stage();
+
+                Scene scene = new Scene(root);
+
+                stage.setTitle("Home");
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
     
 }

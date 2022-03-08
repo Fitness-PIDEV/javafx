@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="665.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLLoginController">
+   <children>
+      <ImageView fitHeight="687.0" fitWidth="611.0" styleClass="fitness.css">
+         <image>
+            <Image url="@../Images/back.png" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="239.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+         <font>
+            <Font name="Bauhaus 93" size="58.0" />
+         </font>
+      </Text>
+      <TextField fx:id="tfemail" layoutX="213.0" layoutY="227.0" promptText="Email" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@fitness.css" />
+      <PasswordField fx:id="pfpassword" layoutX="212.0" layoutY="287.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@fitness.css">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </PasswordField>
+      <Button layoutX="257.0" layoutY="381.0" mnemonicParsing="false" onAction="#login" prefHeight="0.0" prefWidth="94.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 5px 0px;" text="Login" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="531.0" layoutY="21.0" mnemonicParsing="false" onAction="#gotosignup" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 5px 0px;" text="SignUP" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <FontAwesomeIconView fill="WHITE" glyphName="KEY" layoutX="180.0" layoutY="319.0" size="20" AnchorPane.leftAnchor="184.0" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="1.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/logo2.png" />
+         </image>
+      </ImageView>
+      <FontAwesomeIconView fill="WHITE" glyphName="ENVELOPE" layoutX="184.0" layoutY="258.0" size="20" AnchorPane.leftAnchor="184.0" />
+      <ImageView fx:id="imageload" fitHeight="81.0" fitWidth="81.0" layoutX="266.0" layoutY="451.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/loooad.gif" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

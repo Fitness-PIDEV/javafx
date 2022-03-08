@@ -28,8 +28,8 @@ import org.controlsfx.control.Notifications;
  */
 public class AlertDialog {
     
-     public static final Image image_checked=new Image("/images/checked.png");
-    public static final Image image_cross=new Image("/images/cross.png");
+     public static final Image image_checked=new Image("/Images/checked.png");
+    public static final Image image_cross=new Image("/Images/cross.png");
 
     public static void showSimpleAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

@@ -6,10 +6,14 @@
 package GUI;
 
 import Alert.AlertDialog;
-import entites.Produit;
-import Service.produit_service;
+import entities.Produit;
+import fitness_user.FXMain;
+import services.produit_service;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -23,6 +27,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
@@ -33,7 +40,6 @@ import javax.swing.JOptionPane;
  */
 public class AjouterProduitController implements Initializable {
     
-   
     @FXML
     private TextField Ffnom;
     @FXML
@@ -43,17 +49,16 @@ public class AjouterProduitController implements Initializable {
     @FXML
     private TextField Ffetat;
     @FXML
-    private TextField Ffimage;
+    private Button Ffimage;
     @FXML
     private TextField Ffprix;
     @FXML
     private Button Finsert;
     @FXML
-    private Button GestProduit1;
+    private TextField Ffdecrip1;
+    private ImageView img;
     @FXML
-    private Button Gestcategorie1;
-    @FXML
-    private Button Gestcours1;
+    private Button bb;
     
     /**
      * Initializes the controller class.
@@ -62,40 +67,32 @@ public class AjouterProduitController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
     @FXML
+
     private void insertion(ActionEvent event) throws SQLException {
         if(verifUserChampsajouter()){
         produit_service sp=new produit_service(); 
         Produit u = new Produit();
         u.setNom_produit(Ffnom.getText());
         u.setPrix_produit(Integer.parseInt(Ffprix.getText()));
-        u.setImage_produit(Ffimage.getText());
         u.setID_categorie(Integer.parseInt(Ffcategorie.getText()));
+        u.setDescription(Ffdecrip1.getText());
         u.setQuantite_produit(Integer.parseInt(Ffquantite.getText()));
         u.setEtat(Integer.parseInt(Ffetat.getText()));
             sp.Ajouter(u);
 //            System.out.println("GUI.AjouterProduitController.insertion()");
-           
-
-          
-
+         
             try {
-
-                Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
-            
-            stageclose.close();
-                Parent root=FXMLLoader.load(getClass().getResource("affichageproduit.fxml"));
-            Stage stage =new Stage();
-            
+                Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stageclose.close();
+                Parent root = FXMLLoader.load(getClass().getResource("affichageproduit.fxml"));
+                Stage stage = new Stage();
                 Scene scene = new Scene(root);
-            
-            
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
     }
     public boolean verifUserChampsajouter() {
@@ -109,7 +106,7 @@ public class AjouterProduitController implements Initializable {
         Ffprix.setStyle(styledefault);
         Ffetat.setStyle(styledefault);
         Ffquantite.setStyle(styledefault);
-        Ffimage.setStyle(styledefault);
+        Ffdecrip1.setStyle(styledefault);
 
         if (Ffnom.getText().equals("")) {
             Ffnom.setStyle(style);
@@ -135,10 +132,11 @@ public class AjouterProduitController implements Initializable {
             Ffquantite.setStyle(style);
             verif = 1;
         }
-           if (Ffimage.getText().equals("")) {
-            Ffimage.setStyle(style);
+           if (Ffdecrip1.getText().equals("")) {
+            Ffdecrip1.setStyle(style);
             verif = 1;
         }
+          
         if (verif == 0) {
             return true;
         }
@@ -146,8 +144,8 @@ public class AjouterProduitController implements Initializable {
         JOptionPane.showMessageDialog(null, "Remplir tous les champs!");
         return false;
     }
-
     @FXML
+
     private void GestProduit1(ActionEvent event) {
          try {
 
@@ -163,11 +161,9 @@ public class AjouterProduitController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
-                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    @FXML
     private void Gestcategorie1(ActionEvent event) {
         try {
 
@@ -183,11 +179,50 @@ public class AjouterProduitController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
-                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    @FXML
     private void Gestcours1(ActionEvent event) {
+        try {
+
+                Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            stageclose.close();
+                Parent root=FXMLLoader.load(getClass().getResource("affichagecours.fxml"));
+            Stage stage =new Stage();
+            
+                Scene scene = new Scene(root);
+            
+            
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+byte[] produit_image = null;
+    @FXML
+    private void Ffimageinsertion(ActionEvent event) throws IOException {
+        
+        final FileChooser fileChooser = new FileChooser();
+    String imagepath = "";
+    String imageViewpath = "";
+        File file = fileChooser.showOpenDialog(null);
+        
+        if (file != null) {
+             String location = (file.getAbsoluteFile().toURI().toString());
+           
+            File dest = new File("C:\\Users\\Ahmed\\OneDrive\\Bureau\\javafx\\Fitness_user\\src\\Images"+file.getName());
+            Files.copy(file.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+          
+             imagepath = file.getName();
+             imageViewpath = file.getName();
+             Image image = new Image("C:/Users/Ahmed/OneDrive/Bureau/javafx/Fitness_user/src/Images"+file.getName());
+             img.setImage(image);
+        
+    }
+
+   
+}
+
 }

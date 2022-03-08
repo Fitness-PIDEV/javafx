@@ -8,22 +8,16 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CategorieController">
    <children>
-      <TextField fx:id="nom" layoutX="284.0" layoutY="141.0" style="-fx-background-color: transaparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
-      <TextField fx:id="etat" layoutX="284.0" layoutY="194.0" style="-fx-background-color: transaparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
-      <Label layoutX="186.0" layoutY="145.0" text="Nom categorie" />
-      <Label layoutX="212.0" layoutY="198.0" text="Etat" />
-      <Button fx:id="insertC" layoutX="331.0" layoutY="250.0" mnemonicParsing="false" onAction="#insertCa" style="-fx-background-color: #5172a7;" text="ajouter" textFill="WHITE" />
-      <Label layoutX="172.0" layoutY="39.0" prefHeight="53.0" prefWidth="359.0" text="Gestion Categorie">
+      <TextField fx:id="nom" layoutX="245.0" layoutY="141.0" style="-fx-background-color: transaparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+      <TextField fx:id="etat" layoutX="245.0" layoutY="194.0" style="-fx-background-color: transaparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+      <Label layoutX="147.0" layoutY="145.0" text="Nom categorie" />
+      <Label layoutX="173.0" layoutY="198.0" text="Etat" />
+      <Button fx:id="insertC" layoutX="158.0" layoutY="266.0" mnemonicParsing="false" onAction="#insertCa" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #5172a7;" text="Ajouter" textFill="WHITE" />
+      <Label layoutX="141.0" layoutY="41.0" prefHeight="53.0" prefWidth="319.0" text="Gestion Categorie" textFill="#5172a7">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="-6.0" prefHeight="510.0" prefWidth="149.0" style="-fx-background-color: #5172a7;">
-         <children>
-            <Button fx:id="GestProduit3" layoutX="10.0" layoutY="95.0" mnemonicParsing="false" onAction="#GestProduit3" prefHeight="36.0" prefWidth="134.0" style="-fx-background-color: #FFFFFF;" text="Gestion Produit" />
-            <Button fx:id="Gestcategorie3" layoutX="10.0" layoutY="139.0" mnemonicParsing="false" onAction="#Gestcategorie3" prefHeight="36.0" prefWidth="134.0" style="-fx-background-color: #FFFFFF;" text="Gestion categorie" />
-            <Button fx:id="Gestcours3" layoutX="10.0" layoutY="184.0" mnemonicParsing="false" onAction="#Gestcours3" prefHeight="36.0" prefWidth="134.0" style="-fx-background-color: #FFFFFF;" text="Gestion cours" />
-         </children>
-      </AnchorPane>
+      <Button fx:id="Gestcategorie3" layoutX="313.0" layoutY="264.0" mnemonicParsing="false" onAction="#Gestcategorie3" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: #5172a7;" text="Annuler" textFill="WHITE" />
    </children>
 </AnchorPane>

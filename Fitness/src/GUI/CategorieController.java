@@ -5,8 +5,9 @@
  */
 package GUI;
 
-import Service.categorie_service;
-import entites.Categorie;
+import services.categorie_service;
+import entities.Categorie;
+import fitness_user.FXMain;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -38,11 +39,7 @@ public class CategorieController implements Initializable {
     @FXML
     private Button insertC;
     @FXML
-    private Button GestProduit3;
-    @FXML
     private Button Gestcategorie3;
-    @FXML
-    private Button Gestcours3;
 
     /**
      * Initializes the controller class.
@@ -74,11 +71,10 @@ public class CategorieController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
-                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    @FXML
     private void GestProduit3(ActionEvent event) {
         try {
 
@@ -94,7 +90,7 @@ public class CategorieController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
-                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -114,12 +110,27 @@ public class CategorieController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
-                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    @FXML
     private void Gestcours3(ActionEvent event) {
+        try {
+
+                Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            stageclose.close();
+                Parent root=FXMLLoader.load(getClass().getResource("affichagecours.fxml"));
+            Stage stage =new Stage();
+            
+                Scene scene = new Scene(root);
+            
+            
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

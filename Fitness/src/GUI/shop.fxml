@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ShopController">
+    <children>
+      <JFXListView fx:id="ListView_Produits" layoutX="71.0" layoutY="100.0" prefHeight="600.0" prefWidth="818.0" />
+      <HBox layoutX="14.0" layoutY="35.0" prefHeight="65.0" prefWidth="1027.0">
+         <children>
+            <JFXTextField fx:id="rechercher" focusColor="#0040ff" onKeyReleased="#search" prefHeight="25.0" prefWidth="281.0" promptText="rechercher" unFocusColor="#f80000">
+               <HBox.margin>
+                  <Insets left="50.0" right="-10.0" />
+               </HBox.margin></JFXTextField>
+            <FontAwesomeIconView glyphName="SEARCH" size="15" />
+         </children></HBox>
+   </children>
+</AnchorPane>
+
+
