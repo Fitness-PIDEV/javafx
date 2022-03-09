@@ -82,7 +82,7 @@ public class livraison {
 
     @Override
     public String toString() {
-        return "livraison{" + "id_livraison=" + id_livraison + ", ref_commande=" + ref_commande + ", id_user=" + id_user + ", frais_livraison=" + frais_livraison + ", donnees_user=" + donnees_user + ", localisation=" + localisation + '}';
+        return " ref_commande=" + ref_commande + ", id_user=" + id_user + ", frais_livraison=" + frais_livraison + ", donnees_user=" + donnees_user + ", localisation=" + localisation ;
     }
 
   

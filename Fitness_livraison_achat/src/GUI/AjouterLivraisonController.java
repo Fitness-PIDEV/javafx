@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import services.ServiceAchat;
 import services.ServiceLivraison;
@@ -34,13 +35,16 @@ public class AjouterLivraisonController implements Initializable {
     private TextField tf_frais;
     @FXML
     private TextField tf_localisation;
+    @FXML
+    private Button btn_ajout;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       
+                              new animatefx.animation.LightSpeedIn(btn_ajout).setCycleCount(10000).play();
     }
 
     @FXML

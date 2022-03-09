@@ -5,6 +5,7 @@
  */
 package services;
 
+import entities.User;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -14,6 +15,6 @@ public interface Iservice<T> {
     public List<T> afficher();
     public void modifer(T u, int id);
     public void supprimer(int t);
-     
+    //to do
     
 }

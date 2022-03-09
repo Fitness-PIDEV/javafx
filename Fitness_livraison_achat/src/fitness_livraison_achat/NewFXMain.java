@@ -24,6 +24,11 @@ import javafx.stage.Stage;
  */
 public class NewFXMain extends Application {
     
+ 
+    
+    
+    
+    
     @Override
     public void start(Stage primaryStage) {
         
@@ -46,6 +51,9 @@ public class NewFXMain extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+        
+               // ConnexionSingleton BD = new ConnexionSingleton();
+
     }
     
 }

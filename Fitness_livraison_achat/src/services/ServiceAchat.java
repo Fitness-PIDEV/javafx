@@ -113,6 +113,25 @@ public class ServiceAchat implements Iservice<achat> {
             System.out.println(e);
         }
     }
+
+   public int nombreachat() {
+int i=0;
+        try {
+            Statement st = cnx.createStatement();
+            
+            String query = "select * from `achat` ";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+               i=i+1;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("erreur");
+            System.out.println(ex);
+        }
+            return i ;
+    }
+    
     
     
     

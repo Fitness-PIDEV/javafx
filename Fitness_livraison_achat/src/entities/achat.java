@@ -60,7 +60,7 @@ public class achat {
 
     @Override
     public String toString() {
-        return "achat{" + "id=" + id_produit + ", reference=" + ref_produit + ", prix=" + prix +'}';
+        return "reference=" + ref_produit + ", prix=" + prix ;
     }
 
     public PreparedStatement prepareStatement(String query) {

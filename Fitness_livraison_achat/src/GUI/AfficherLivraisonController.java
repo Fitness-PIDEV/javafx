@@ -5,22 +5,39 @@
  */
 package GUI;
 
+import com.itextpdf.text.DocumentException;
 import entities.achat;
 import entities.livraison;
+import fitness_user.FXMain;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import org.controlsfx.control.Notifications;
 import services.ServiceAchat;
 import services.ServiceLivraison;
+import services.ServicePdf;
 
 /**
  * FXML Controller class
@@ -45,12 +62,37 @@ public class AfficherLivraisonController implements Initializable {
     private TextField tf_localisation;
     ObservableList<livraison> livraison = FXCollections.observableArrayList();
     ServiceLivraison sl = new ServiceLivraison();
+    @FXML
+    private Button btnn_notif;
+    @FXML
+    private Button btn_pdf;
+    @FXML
+    private Button btn_supp;
+    @FXML
+    private Button btn_mod;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+          new animatefx.animation.LightSpeedIn(btn_mod).setCycleCount(10000).play();
+                              new animatefx.animation.LightSpeedIn(btn_supp).setCycleCount(10000).play();
+        
+        ServiceLivraison liv = new ServiceLivraison();
+        
+         btnn_notif.setOnAction(event -> {
+
+             if(liv.nombrelivraison()>0){
+                 
+                 Notifications.create()
+                         .title("Livraison")
+                         .text("   VOUS AVEZ "+liv.nombrelivraison()+" LIVRAISONS !")
+                         .darkStyle()
+                         .position(Pos.TOP_RIGHT)
+                         .showWarning();
+             }
+        });
         refreshlist();
         recherche();
 
@@ -112,6 +154,8 @@ public class AfficherLivraisonController implements Initializable {
         if (tf_localisation.getText().trim().isEmpty()) {
             errors += "Saisire votre localisation\n";
         }
+        
+        
         if (errors.length() > 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur de saisie");
@@ -138,6 +182,44 @@ public class AfficherLivraisonController implements Initializable {
         tf_donnee.setText(String.valueOf(a.getDonnees_user()));
         tf_localisation.setText(String.valueOf(a.getLocalisation()));
 
+    }
+
+    @FXML
+    private void notif(ActionEvent event) {
+    }
+
+    @FXML
+   private void PDF(ActionEvent event) throws FileNotFoundException, DocumentException {
+        
+         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation de création du PDF");
+        alert.setHeaderText("Etes vous sur de vouloir créer un PDF qui contient la liste de vos livraisons?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+             ServicePdf sp= new ServicePdf();
+        sp.liste_livraisonPDF();
+        }
+    }
+
+    @FXML
+    private void gotologin(MouseEvent event) {
+        try {
+            
+                Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+
+                stageclose.close();
+                Parent root=FXMLLoader.load(getClass().getResource("/GUI/FXMLLogin.fxml"));
+                Stage stage =new Stage();
+
+                Scene scene = new Scene(root);
+
+                stage.setTitle("Login");
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
 
 }

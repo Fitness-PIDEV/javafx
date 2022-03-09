@@ -3,22 +3,104 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AfficherAchatController">
+<AnchorPane id="AnchorPane" prefHeight="642.0" prefWidth="1004.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AfficherAchatController">
    <children>
-      <ListView fx:id="listviewachat" layoutX="66.0" layoutY="93.0" onMouseClicked="#fill" prefHeight="229.0" prefWidth="287.0" />
-      <Button layoutX="167.0" layoutY="339.0" mnemonicParsing="false" onAction="#supprimer" style="-fx-background-color: #5172a7;" text="Supprimer" textFill="WHITE">
+      <ListView fx:id="listviewachat" layoutX="249.0" layoutY="111.0" onMouseClicked="#fill" prefHeight="439.0" prefWidth="430.0" />
+      <Button fx:id="btn_supprimer" layoutX="249.0" layoutY="562.0" mnemonicParsing="false" onAction="#supprimer" style="-fx-background-color: #5172a7;" text="Supprimer" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>
-      <Button layoutX="468.0" layoutY="285.0" mnemonicParsing="false" onAction="#modifier" style="-fx-background-color: #5172a7;" text="Modifier" textFill="WHITE">
+      <Button fx:id="btn_modifier" layoutX="781.0" layoutY="461.0" mnemonicParsing="false" onAction="#modifier" style="-fx-background-color: #5172a7;" text="Modifier" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>
-      <TextField fx:id="tf_ref_prod" layoutX="431.0" layoutY="159.0" promptText="ref_produit" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
-      <TextField fx:id="tf_prix" layoutX="432.0" layoutY="219.0" promptText="prix" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
-      <TextField fx:id="recherche" layoutX="68.0" layoutY="56.0" prefHeight="26.0" prefWidth="287.0" promptText="recherche par prix" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+      <TextField fx:id="tf_ref_prod" layoutX="747.0" layoutY="209.0" promptText="ref_produit" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+      <TextField fx:id="tf_prix" layoutX="747.0" layoutY="322.0" promptText="prix" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+      <TextField fx:id="recherche" layoutX="251.0" layoutY="72.0" prefHeight="28.0" prefWidth="430.0" promptText="recherche" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+      <Button layoutX="742.0" layoutY="35.0" mnemonicParsing="false" onAction="#PDF" prefHeight="42.0" prefWidth="77.0" text="PDF">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/pngkhalil.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnn_notif" layoutX="888.0" layoutY="35.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="47.0" />
+      <ImageView fitHeight="30.0" fitWidth="49.0" layoutX="897.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/notif.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="10.0" layoutY="10.0" prefHeight="642.0" prefWidth="188.0" style="-fx-background-color: #5172a7 #5172a7;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="816.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#gohome" prefHeight="65.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="53.0" fitWidth="76.0">
+                     <image>
+                        <Image url="@../Images/white-home-icon-png-21.jpg" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#gotouser" prefHeight="65.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Gestion utilisateur" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="75.0" mnemonicParsing="false" onAction="#gotoRec" prefHeight="65.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Gestion reclamation" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="140.0" mnemonicParsing="false" onAction="#goplanning" prefHeight="65.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Gestion planning" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="205.0" mnemonicParsing="false" onAction="#goreservation" prefHeight="64.0" prefWidth="203.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Gestion reservation" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="270.0" mnemonicParsing="false" onAction="#Gestcours5" prefHeight="65.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Gestion cours" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="335.0" mnemonicParsing="false" onAction="#GestProduit5" prefHeight="65.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Gestion produit" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="400.0" mnemonicParsing="false" onAction="#Gestcategorie5" prefHeight="65.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Gestion categorie" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="465.0" mnemonicParsing="false" onAction="#goabonnement" prefHeight="65.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Gestion abonnement" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="530.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="188.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Gestion achat" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

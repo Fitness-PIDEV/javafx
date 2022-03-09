@@ -131,4 +131,24 @@ public class ServiceLivraison implements Iservice<livraison> {
 
     }
 
+    public int nombrelivraison() {
+int i=0;
+        try {
+            Statement st = cnx.createStatement();
+            
+            String query = "select * from `livraison` ";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+               i=i+1;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("erreur");
+            System.out.println(ex);
+        }
+            return i ;
+    }
+    
+    
+    
 }

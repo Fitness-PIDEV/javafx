@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author khalil
+ * @author Ahmed
  */
 public class MyDB {
     public final String url="jdbc:mysql://127.0.0.1:3306/fitness";
