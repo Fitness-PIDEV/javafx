@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="502.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AjouterPlanningController">
+   <children>
+      <TextField fx:id="dure" layoutX="573.0" layoutY="292.0" prefHeight="43.0" prefWidth="180.0" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+      <TextField fx:id="id_cours" layoutX="559.0" layoutY="203.0" prefHeight="35.0" prefWidth="180.0" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+      <TextField fx:id="salle" layoutX="185.0" layoutY="291.0" prefHeight="43.0" prefWidth="174.0" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+      <TextField fx:id="nom" layoutX="185.0" layoutY="119.0" prefHeight="43.0" prefWidth="174.0" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+      <TextField fx:id="nomcoach" layoutX="185.0" layoutY="193.0" prefHeight="43.0" prefWidth="174.0" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+      <Label layoutX="101.0" layoutY="141.0" text="nom cours">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="505.0" layoutY="313.0" text="duree">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="492.0" layoutY="220.0" text="id cours">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="120.0" layoutY="313.0" text="salle">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="99.0" layoutY="220.0" text="nom coach">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="495.0" layoutY="137.0" prefHeight="26.0" prefWidth="42.0" text="date">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="insert" layoutX="214.0" layoutY="386.0" mnemonicParsing="false" onAction="#insertion" prefHeight="35.0" prefWidth="145.0" style="-fx-background-color: #5172a7;" text="Ajouter" textFill="WHITE" />
+      <DatePicker fx:id="date" layoutX="560.0" layoutY="133.0" prefHeight="35.0" prefWidth="206.0" style="-fx-background-color: transparent; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+      <Label layoutX="272.0" layoutY="38.0" text="Ajouter Planning" textFill="#5172a7">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <Button layoutX="465.0" layoutY="386.0" mnemonicParsing="false" onAction="#afficherplanning" prefHeight="35.0" prefWidth="145.0" style="-fx-background-color: #5172a7;" text="Annuler" textFill="WHITE" />
+   </children>
+</AnchorPane>
