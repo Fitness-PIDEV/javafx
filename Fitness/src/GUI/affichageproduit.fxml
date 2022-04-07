@@ -24,12 +24,12 @@
                   <Button fx:id="supprimer" layoutX="457.0" layoutY="473.0" mnemonicParsing="false" onAction="#supprimer" style="-fx-background-color: #5172a7;" text="supprimer" textFill="WHITE" />
                   <Button fx:id="mod" layoutX="581.0" layoutY="455.0" mnemonicParsing="false" onAction="#modifier" style="-fx-background-color: #5172a7;" text="Modifier" textFill="WHITE" />
                   <ListView fx:id="idlist" layoutX="157.0" layoutY="202.0" onMouseClicked="#fill" prefHeight="264.0" prefWidth="370.0" />
-                  <TextField fx:id="Fnom" layoutX="537.0" layoutY="218.0" promptText="nom produit" style="-fx-background-color: transparant; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
-                  <TextField fx:id="Fetat" layoutX="537.0" layoutY="418.0" promptText="etat" style="-fx-background-color: transparant; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
-                  <TextField fx:id="Fcategorie" layoutX="537.0" layoutY="376.0" promptText="id categorie" style="-fx-background-color: transparant; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
-                  <TextField fx:id="Fquantite" layoutX="537.0" layoutY="341.0" promptText="quantite produit" style="-fx-background-color: transparant; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
-                  <TextField fx:id="Fimage" layoutX="537.0" layoutY="297.0" promptText="image produit" style="-fx-background-color: transparant; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
-                  <TextField fx:id="Fprix" layoutX="537.0" layoutY="253.0" promptText="prix produit" style="-fx-background-color: transparant; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+                  <TextField fx:id="Fnom" layoutX="537.0" layoutY="186.0" promptText="nom produit" style="-fx-background-color: transparant; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+                  <TextField fx:id="Fetat" layoutX="537.0" layoutY="419.0" promptText="etat" style="-fx-background-color: transparant; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+                  <TextField fx:id="Fcategorie" layoutX="537.0" layoutY="344.0" promptText="id categorie" style="-fx-background-color: transparant; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+                  <TextField fx:id="Fquantite" layoutX="537.0" layoutY="309.0" promptText="quantite produit" style="-fx-background-color: transparant; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+                  <TextField fx:id="Fimage" layoutX="537.0" layoutY="265.0" promptText="image produit" style="-fx-background-color: transparant; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+                  <TextField fx:id="Fprix" layoutX="537.0" layoutY="221.0" promptText="prix produit" style="-fx-background-color: transparant; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
                   <TextField fx:id="search" layoutX="350.0" layoutY="170.0" onAction="#search" />
                   <AnchorPane layoutY="-2.0" prefHeight="571.0" prefWidth="140.0" style="-fx-background-color: #5172a7;">
                      <children>
@@ -38,6 +38,8 @@
                         <Button fx:id="Gestcours2" layoutX="3.0" layoutY="251.0" mnemonicParsing="false" onAction="#Gestcours2" prefHeight="36.0" prefWidth="134.0" style="-fx-background-color: #FFFFFF;" text="Gestion cours" />
                      </children>
                   </AnchorPane>
+                  <TextField fx:id="Fdescrip1" layoutX="537.0" layoutY="384.0" promptText="description" style="-fx-background-color: transparant; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
+                  <Button fx:id="idstat" layoutX="460.0" layoutY="505.0" mnemonicParsing="false" onAction="#gostat" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #5172a7;" text="Statistic" textFill="WHITE" />
                </children>
             </AnchorPane>
          </children>

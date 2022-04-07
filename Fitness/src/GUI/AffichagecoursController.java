@@ -191,12 +191,12 @@ public class AffichagecoursController implements Initializable {
     private void modifier1(ActionEvent event) throws SQLException {
             Cours c = new Cours();
          cours_service cr = new cours_service();
-        c.setNom_cours(nomcours.getText());
+       c.setNom_cours(nomcours.getText());
                 c.setEtat(Integer.parseInt(etatcours.getText()));
                 c.setDuree_cours(durecours.getText());
                 c.setSalle(sallecours.getText());
                 c.setNom_coach(nomcoach.getText());
-                cr.Modifier(c, list.getSelectionModel().getSelectedItem().getID());
+                cr.Modifier(c,list.getSelectionModel().getSelectedItem().getID());
                 AlertDialog.showNotification("modifier","avec succee", AlertDialog.image_checked);
                 afficher();
     }

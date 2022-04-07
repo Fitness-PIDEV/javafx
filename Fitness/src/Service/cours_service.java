@@ -42,15 +42,16 @@ public class cours_service implements IService<Cours>{
 
 
     }
+    @Override
  public void Supprimer(Cours co,int id) throws SQLException {
         PreparedStatement ps;
 
-        String query = "UPDATE produit SET etat`=? WHERE id`='"+id+"'";
+        String query = "UPDATE cours SET etat=0 WHERE id='"+id+"'";
   
         try {
             ps = c.prepareStatement(query);
 
-            ps.setInt(1,0);
+//            ps.setInt(1,0);
             //ps.setInt(2,r.getId());
             ps.execute();
 
@@ -83,16 +84,17 @@ public class cours_service implements IService<Cours>{
     @Override
      public void Modifier(Cours p, int id) {
        PreparedStatement ps;
-        String query = "UPDATE cours SET `nom_cours`=?,`duree_cours`=?,`salle`=?,`nom_coach`=?,`etat`=? WHERE `ID`="+id;
-        try {
+        String query = "UPDATE `cours` SET `nom_cours`=?,`duree_cours`=?,`salle`=?,`nom_coach`=?,`etat`=? WHERE `ID`="+id;
+         try {
             
             ps = c.prepareStatement(query);
          
             ps.setString(1, p.getNom_cours());
-            ps.setInt(2, p.getEtat());
-            ps.setString(3, p.getNom_coach());
-             ps.setString(4, p.getDuree_cours());
-              ps.setString(5, p.getSalle());
+            ps.setString(2, p.getDuree_cours());
+            ps.setString(3, p.getSalle());
+             ps.setString(4, p.getNom_coach());
+              ps.setInt(5, p.getEtat());
+             
                
             
             

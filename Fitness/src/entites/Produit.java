@@ -19,7 +19,7 @@ public class Produit {
     private String description;
      private int etat;
 
-
+private static int id_courant;
     public Produit(int ID, String nom_produit,int prix_produit,String image_produit, int quantite_produit, int ID_categorie, int etat, String description) {
         this.ID = ID;
         this.nom_produit = nom_produit;
@@ -48,6 +48,14 @@ public class Produit {
 
     public Produit() {
        
+    }
+
+    public static int getId_courant() {
+        return id_courant;
+    }
+
+    public static void setId_courant(int id_courant) {
+        Produit.id_courant = id_courant;
     }
 
     public int getID() {

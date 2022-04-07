@@ -77,6 +77,10 @@ public class StartController implements Initializable {
     private Button Gestcategorie2;
     @FXML
     private Button Gestcours2;
+    @FXML
+    private TextField Fdescrip1;
+    @FXML
+    private Button idstat;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
@@ -149,9 +153,11 @@ public class StartController implements Initializable {
                 p.setQuantite_produit(Integer.parseInt(Fquantite.getText()));
                 p.setID_categorie(Integer.parseInt(Fcategorie.getText()));
                 p.setImage_produit(Fimage.getText());
+                p.setDescription(Fdescrip1.getText());
                 sr.Modifier(p, idlist.getSelectionModel().getSelectedItem().getID());
                 AlertDialog.showNotification("modifier","avec succee", AlertDialog.image_checked);
                 afficher();
+                
     }
 
     @FXML
@@ -163,6 +169,7 @@ public class StartController implements Initializable {
         Fquantite.setText(String.valueOf(p.getQuantite_produit()));
         Fcategorie.setText(String.valueOf(p.getID_categorie()));
         Fimage.setText(p.getImage_produit());
+        Fdescrip1.setText(p.getDescription());
         
         
         
@@ -238,6 +245,27 @@ public class StartController implements Initializable {
         } catch (IOException ex) {
                 Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void gostat(ActionEvent event) {
+         try {
+
+                Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            stageclose.close();
+                Parent root=FXMLLoader.load(getClass().getResource("statistic.fxml"));
+            Stage stage =new Stage();
+            
+                Scene scene = new Scene(root);
+            
+            
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
 }

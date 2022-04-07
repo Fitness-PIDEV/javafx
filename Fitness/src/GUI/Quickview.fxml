@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="534.0" prefWidth="874.0" stylesheets="@stat.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.QuickviewController">
+   
+   <children>
+      <Label layoutX="324.0" layoutY="81.0" prefHeight="60.0" prefWidth="171.0" text="Details" textFill="#42060c">
+         <font>
+            <Font name="Cambria Italic" size="50.0" />
+         </font>
+      </Label>
+      <VBox layoutX="584.0" layoutY="193.0" prefHeight="384.0" prefWidth="325.0" spacing="33.0">
+         <children>
+            <Label text="CATEGORIE">
+               <font>
+                  <Font name="Cambria Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="categorie" text="Label">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <Label text="Description :">
+               <font>
+                  <Font name="Cambria Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="description" text="Label">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+         </children>
+      </VBox>
+      <VBox layoutX="213.0" layoutY="166.0" prefHeight="257.0" prefWidth="239.0" spacing="35.0">
+         <children>
+            <Label prefHeight="86.0" prefWidth="80.0" text="Nom :">
+               <font>
+                  <Font name="Cambria Italic" size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="nom" prefHeight="35.0" prefWidth="76.0" text=" Nom :">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <Label text="PRIX">
+               <font>
+                  <Font name="Cambria Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="Prix" prefHeight="58.0" prefWidth="91.0" text="Label">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+         </children>
+      </VBox>
+      <VBox layoutX="-2.0" layoutY="-7.0" prefHeight="667.0" prefWidth="185.0" styleClass="left-bar" stylesheets="@Style.css">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/png.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

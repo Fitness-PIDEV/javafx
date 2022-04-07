@@ -71,6 +71,37 @@ public class produit_service implements IService<Produit>{
         }
         return list;
     }
+    public Produit GetProdbyid(int b) throws SQLException {
+
+        //-------------------- Update ----------//
+        Produit pr = new Produit();
+
+        String query = "select * from produit where id = ? ";
+        PreparedStatement ps;
+        try {
+              ps = MyConnexion.getInsCon().getcnx().prepareCall(query);
+            ps.setInt(1, b);
+            ResultSet rest = ps.executeQuery();
+
+            while (rest.next()) {
+                pr.setID(rest.getInt("id"));
+                pr.setNom_produit(rest.getString("nom"));
+                pr.setPrix_produit(rest.getInt("prix"));
+                pr.setImage_produit(rest.getString("photo"));
+                pr.setDescription(rest.getString("description"));
+                pr.setID_categorie(rest.getInt("Categorie"));
+                 pr.setEtat(rest.getInt("etat"));
+               
+                
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(produit_service.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return pr;
+
+    }
     
     @Override
      public void Supprimer(Produit p,int id) throws SQLException {
@@ -115,7 +146,7 @@ public class produit_service implements IService<Produit>{
     @Override
   public void Modifier(Produit p, int id) {
        PreparedStatement ps;
-        String query = "UPDATE produit SET `nom_produit`=?,`prix_produit`=?,`image_produit`=?,`quantite_produit`=?,`ID_categorie`=?,`etat`=?,`descriprion`=? WHERE `ID`="+id;
+        String query = "UPDATE produit SET `nom_produit`=?,`prix_produit`=?,`image_produit`=?,`quantite_produit`=?,`ID_categorie`=?,`etat`=?,`description`=? WHERE `ID`="+id;
         try {
             
             ps = c.prepareStatement(query);
@@ -162,6 +193,22 @@ public class produit_service implements IService<Produit>{
         return Affichertout().stream().filter(a -> a.getNom_produit().equals(nom)).collect(Collectors.toList());
 
     }
+    public long Recherche2() throws SQLException {
+
+  List<Produit> p = Affichertout();
+        return p.stream().filter(b -> b.getQuantite_produit()> 1).filter(b -> b.getQuantite_produit()< 10 ).count();
+    }
+     public long Recherche3() throws SQLException {
+
+  List<Produit> p = Affichertout();
+        return p.stream().filter(b -> b.getQuantite_produit()> 10).filter(b -> b.getQuantite_produit()< 20 ).count();
+    }
+      public long Recherche4() throws SQLException {
+
+  List<Produit> p = Affichertout();
+        return p.stream().filter(b -> b.getQuantite_produit()> 20).filter(b -> b.getQuantite_produit()< 30).count();
+    }
+     
 
     public List<Produit> select_produit_by_cat(int categorie_id)
      { PreparedStatement ps;

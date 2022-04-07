@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="515.0" prefWidth="665.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="GUI.AffichagecoursController">
+<AnchorPane id="AnchorPane" prefHeight="515.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AffichagecoursController">
    <children>
       <AnchorPane prefHeight="515.0" prefWidth="140.0" style="-fx-background-color: #5172a7;">
          <children>
@@ -28,7 +27,7 @@
       <TextField fx:id="nomcoach" layoutX="498.0" layoutY="261.0" promptText="nom coach" style="-fx-background-color: transparant; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
       <TextField fx:id="sallecours" layoutX="498.0" layoutY="217.0" promptText="salle" style="-fx-background-color: transparant; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
       <TextField fx:id="durecours" layoutX="498.0" layoutY="173.0" promptText="duree cours" style="-fx-background-color: transparant; -fx-border-color: #5172a7; -fx-border-width: 0px 0px 2px 0px;" />
-      <Button fx:id="ajoutc" layoutX="152.0" layoutY="476.0" mnemonicParsing="false" onAction="#ajoutc" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #5172a7;" text="Ajouter le produit" textFill="WHITE" />
+      <Button fx:id="ajoutc" layoutX="152.0" layoutY="476.0" mnemonicParsing="false" onAction="#ajoutc" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #5172a7;" text="Ajouter le cours" textFill="WHITE" />
       <Button fx:id="supprimer1" layoutX="399.0" layoutY="420.0" mnemonicParsing="false" onAction="#supprimer1" style="-fx-background-color: #5172a7;" text="supprimer" textFill="WHITE" />
       <Button fx:id="mod1" layoutX="542.0" layoutY="340.0" mnemonicParsing="false" onAction="#modifier1" style="-fx-background-color: #5172a7;" text="Modifier" textFill="WHITE" />
       <TextField fx:id="searchc" layoutX="324.0" layoutY="106.0" onAction="#searchc" />
